@@ -1,0 +1,16 @@
+# build products
+build/
+obj_dir/
+*.vvp
+*.vcd
+*.fst
+__pycache__/
+# Questa / ModelSim work libraries and waveforms
+work/
+transcript
+*.wlf
+wlft*
+*.mpf
+*.cr.mti
+# course IP (encrypted netlists) is intentionally not part of this repository
+dut_encrypted/
