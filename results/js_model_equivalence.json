@@ -1,0 +1,434 @@
+[
+ {
+  "design": "calc1",
+  "bug": 0,
+  "seed": 0,
+  "cycles": 5003,
+  "responses": 2831,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc1",
+  "bug": 0,
+  "seed": 1,
+  "cycles": 5003,
+  "responses": 2799,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc1",
+  "bug": 0,
+  "seed": 2,
+  "cycles": 5003,
+  "responses": 2768,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc1",
+  "bug": 1,
+  "seed": 0,
+  "cycles": 5003,
+  "responses": 2774,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc1",
+  "bug": 1,
+  "seed": 1,
+  "cycles": 5003,
+  "responses": 2791,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc1",
+  "bug": 1,
+  "seed": 2,
+  "cycles": 5003,
+  "responses": 2745,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc1",
+  "bug": 2,
+  "seed": 0,
+  "cycles": 5003,
+  "responses": 2780,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc1",
+  "bug": 2,
+  "seed": 1,
+  "cycles": 5003,
+  "responses": 2766,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc1",
+  "bug": 2,
+  "seed": 2,
+  "cycles": 5003,
+  "responses": 2759,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc1",
+  "bug": 3,
+  "seed": 0,
+  "cycles": 5003,
+  "responses": 2756,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc1",
+  "bug": 3,
+  "seed": 1,
+  "cycles": 5003,
+  "responses": 2806,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc1",
+  "bug": 3,
+  "seed": 2,
+  "cycles": 5003,
+  "responses": 2761,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc1",
+  "bug": 4,
+  "seed": 0,
+  "cycles": 5003,
+  "responses": 2783,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc1",
+  "bug": 4,
+  "seed": 1,
+  "cycles": 5003,
+  "responses": 2775,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc1",
+  "bug": 4,
+  "seed": 2,
+  "cycles": 5003,
+  "responses": 2761,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc1",
+  "bug": 5,
+  "seed": 0,
+  "cycles": 5003,
+  "responses": 2786,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc1",
+  "bug": 5,
+  "seed": 1,
+  "cycles": 5003,
+  "responses": 2800,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc1",
+  "bug": 5,
+  "seed": 2,
+  "cycles": 5003,
+  "responses": 2766,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc1",
+  "bug": 6,
+  "seed": 0,
+  "cycles": 5003,
+  "responses": 2788,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc1",
+  "bug": 6,
+  "seed": 1,
+  "cycles": 5003,
+  "responses": 2744,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc1",
+  "bug": 6,
+  "seed": 2,
+  "cycles": 5003,
+  "responses": 2772,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc1",
+  "bug": 7,
+  "seed": 0,
+  "cycles": 5003,
+  "responses": 163,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc1",
+  "bug": 7,
+  "seed": 1,
+  "cycles": 5003,
+  "responses": 243,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc1",
+  "bug": 7,
+  "seed": 2,
+  "cycles": 5003,
+  "responses": 219,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc3",
+  "bug": 0,
+  "seed": 0,
+  "cycles": 5003,
+  "responses": 7353,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc3",
+  "bug": 0,
+  "seed": 1,
+  "cycles": 5003,
+  "responses": 7297,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc3",
+  "bug": 0,
+  "seed": 2,
+  "cycles": 5003,
+  "responses": 7247,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc3",
+  "bug": 1,
+  "seed": 0,
+  "cycles": 5003,
+  "responses": 7243,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc3",
+  "bug": 1,
+  "seed": 1,
+  "cycles": 5003,
+  "responses": 7209,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc3",
+  "bug": 1,
+  "seed": 2,
+  "cycles": 5003,
+  "responses": 7371,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc3",
+  "bug": 2,
+  "seed": 0,
+  "cycles": 5003,
+  "responses": 7371,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc3",
+  "bug": 2,
+  "seed": 1,
+  "cycles": 5003,
+  "responses": 7378,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc3",
+  "bug": 2,
+  "seed": 2,
+  "cycles": 5003,
+  "responses": 7448,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc3",
+  "bug": 3,
+  "seed": 0,
+  "cycles": 5003,
+  "responses": 7246,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc3",
+  "bug": 3,
+  "seed": 1,
+  "cycles": 5003,
+  "responses": 7264,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc3",
+  "bug": 3,
+  "seed": 2,
+  "cycles": 5003,
+  "responses": 7270,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc3",
+  "bug": 4,
+  "seed": 0,
+  "cycles": 5003,
+  "responses": 7260,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc3",
+  "bug": 4,
+  "seed": 1,
+  "cycles": 5003,
+  "responses": 7252,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc3",
+  "bug": 4,
+  "seed": 2,
+  "cycles": 5003,
+  "responses": 7418,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc3",
+  "bug": 5,
+  "seed": 0,
+  "cycles": 5003,
+  "responses": 7205,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc3",
+  "bug": 5,
+  "seed": 1,
+  "cycles": 5003,
+  "responses": 7230,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc3",
+  "bug": 5,
+  "seed": 2,
+  "cycles": 5003,
+  "responses": 7274,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc3",
+  "bug": 6,
+  "seed": 0,
+  "cycles": 5003,
+  "responses": 7270,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc3",
+  "bug": 6,
+  "seed": 1,
+  "cycles": 5003,
+  "responses": 7183,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc3",
+  "bug": 6,
+  "seed": 2,
+  "cycles": 5003,
+  "responses": 7345,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc3",
+  "bug": 7,
+  "seed": 0,
+  "cycles": 5003,
+  "responses": 7278,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc3",
+  "bug": 7,
+  "seed": 1,
+  "cycles": 5003,
+  "responses": 7291,
+  "mismatches": 0,
+  "first": []
+ },
+ {
+  "design": "calc3",
+  "bug": 7,
+  "seed": 2,
+  "cycles": 5003,
+  "responses": 7309,
+  "mismatches": 0,
+  "first": []
+ }
+]
