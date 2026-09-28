@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calc1 &amp; Calc3 Functional Verification</title>
+<meta name="description" content="Interactive, cycle-accurate walkthrough of the functional verification of the Calc1 and Calc3 calculator designs: spec, layered SystemVerilog testbench, constrained-random stimulus, coverage, injected bugs and the 2024 findings.">
+<meta name="author" content="Nitish Sundarraj">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232a78d6'/%3E%3Cpath d='M6 22h4l3-12 3 12 3-12 3 12h4' stroke='white' stroke-width='2.4' fill='none' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/site.css">
+<script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+
+<nav class="topnav" aria-label="Sections">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="var(--s1)"/><path d="M6 22h4l3-12 3 12 3-12 3 12h4" stroke="#fff" stroke-width="2.4" fill="none" stroke-linejoin="round"/></svg>
+      Calc Verification
+    </a>
+    <div class="navlinks">
+      <a href="#designs">Designs</a>
+      <a href="#sim">Simulator</a>
+      <a href="#method">Testbench</a>
+      <a href="#hunt">Bug hunt</a>
+      <a href="#findings">2024 findings</a>
+      <a href="#results">Results</a>
+      <a href="#run">Run it</a>
+    </div>
+    <button class="iconbtn" id="themeBtn" title="Toggle light / dark" aria-label="Toggle colour theme">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="eyebrow">COEN 6541 · Functional Hardware Verification · revisited 2026</div>
+    <h1>Verifying <span class="hl">Calc1</span> and <span class="hl">Calc3</span>, one clock edge at a time</h1>
+    <p class="sub">An interactive walkthrough of how two multi-port calculator designs were verified: the specification, a layered self-checking SystemVerilog testbench, constrained-random stimulus, functional coverage, and the bugs it found. The simulators on this page run the same logic as the Verilog RTL, checked cycle by cycle.</p>
+    <div class="grid4 stats">
+      <div class="stat"><div class="num tnum" id="hs1">3,321 / 3,321</div><div class="lbl">2024 port-1 ADD results reproduced digit-for-digit by a single bridged-net fault</div></div>
+      <div class="stat"><div class="num tnum" id="hs2">14 / 14</div><div class="lbl">injected bugs caught by the rewritten testbench, with 0 false failures on the golden design</div></div>
+      <div class="stat"><div class="num tnum" id="hs3">100%</div><div class="lbl">verification-plan coverage on Calc1 (9 groups) and Calc3 (11 groups)</div></div>
+      <div class="stat"><div class="num tnum" id="hs4">48 / 48</div><div class="lbl">RTL-vs-JavaScript runs that match on every output of every cycle</div></div>
+    </div>
+    <div class="row cta">
+      <a class="btn primary" href="#sim">Open the simulator</a>
+      <a class="btn" href="#hunt">Try the bug hunt</a>
+      <a class="btn" href="https://github.com/sundarrajnitish/Calc-Functional-Verification">Source on GitHub</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===================================================================== -->
+<section id="designs">
+  <div class="wrap">
+    <div class="eyebrow">1 · Devices under test</div>
+    <h2>Two calculators, four ports each</h2>
+    <p class="lede">Both designs come from the IBM "calc" family used to teach functional verification. Four requesters share two execution units, so the interesting bugs live in the plumbing (arbitration, timing, tags, hazards), not in the arithmetic. The course supplied them as encrypted netlists that only run in Questa; this project adds open, readable reference versions with the same ports so anyone can simulate them.</p>
+
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-tabgroup="dz" data-tab="dz1">Calc1</button>
+      <button class="tab" data-tabgroup="dz" data-tab="dz3">Calc3</button>
+    </div>
+
+    <div data-pane="dz1">
+      <div class="grid2">
+        <div class="card">
+          <h3>Calc1: the protocol</h3>
+          <p class="small ink2">Each port sends a command and <b>operand 1</b> in one cycle and <b>operand 2</b> in the next. Some cycles later the port sees exactly one response. A port may only have one command outstanding.</p>
+          <div id="protoCalc1" class="wave" aria-label="Calc1 protocol timing diagram"></div>
+          <p class="tiny muted" style="margin-top:8px">Generated by the JavaScript model: an ADD of 5 + 3 on port 1. The command is sampled in T0, operand 2 in T1, and the response is visible in T6.</p>
+        </div>
+        <div class="card">
+          <h3>Calc1: commands and responses</h3>
+          <div class="tablewrap">
+          <table class="small">
+            <thead><tr><th>cmd</th><th>operation</th><th>result</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">0</td><td>no-op</td><td class="muted">nothing</td></tr>
+              <tr><td class="mono">1</td><td>add</td><td>op1 + op2, response 2 on carry-out</td></tr>
+              <tr><td class="mono">2</td><td>subtract</td><td>op1 − op2, response 2 if op2 &gt; op1</td></tr>
+              <tr><td class="mono">5</td><td>shift left</td><td>op1 &lt;&lt; op2[27:31] (low 5 bits)</td></tr>
+              <tr><td class="mono">6</td><td>shift right</td><td>op1 &gt;&gt; op2[27:31]</td></tr>
+              <tr><td class="mono">other</td><td>invalid</td><td>response 2</td></tr>
+            </tbody>
+          </table>
+          </div>
+          <p class="tiny muted">Responses: 0 = none this cycle, 1 = success (out_data valid), 2 = overflow / underflow / invalid, 3 = unused. Bit 0 is the MSB (IBM numbering).</p>
+        </div>
+      </div>
+      <div class="card" style="margin-top:20px">
+        <h3>Calc1: inside the box</h3>
+        <div class="grid3">
+          <div class="microarch" id="archCalc1Static" style="grid-column: span 2"></div>
+          <ul class="small ink2" style="margin:0">
+            <li><b>Input stage</b> per port: a 4-state FSM (IDLE → OP2 → PEND → BUSY) that captures both operands.</li>
+            <li><b>Priority arbiter</b>: each cycle, each unit takes the lowest-numbered pending port. Port 1 always wins ties.</li>
+            <li><b>ADD unit</b> (add/sub) and <b>SHIFT unit</b> (shl/shr): 3-stage pipelines, one new command per cycle each.</li>
+            <li><b>Reset</b>: <code>reset[1:7]</code> held to all ones for at least 7 cycles.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div data-pane="dz3" hidden>
+      <div class="grid2">
+        <div class="card">
+          <h3>Calc3: registers, tags, branches</h3>
+          <p class="small ink2">Calc3 replaces raw operands with <b>sixteen 32-bit registers</b>. A request carries every field in one cycle: <code>cmd, d1, d2, r1, tag, data</code>. A 2-bit <b>tag</b> lets a port keep up to four commands in flight; responses come back <b>out of order</b> and are matched by tag.</p>
+          <div class="tablewrap">
+          <table class="small">
+            <thead><tr><th>cmd</th><th>name</th><th>effect</th><th>latency</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">1</td><td>add</td><td>R[r1] = R[d1] + R[d2] (carry → resp 2)</td><td class="num">3</td></tr>
+              <tr><td class="mono">2</td><td>sub</td><td>R[r1] = R[d1] − R[d2] (borrow → resp 2)</td><td class="num">3</td></tr>
+              <tr><td class="mono">5</td><td>shl</td><td>R[r1] = R[d1] &lt;&lt; R[d2][27:31]</td><td class="num">4</td></tr>
+              <tr><td class="mono">6</td><td>shr</td><td>R[r1] = R[d1] &gt;&gt; R[d2][27:31]</td><td class="num">4</td></tr>
+              <tr><td class="mono">9</td><td>store</td><td>R[r1] = data</td><td class="num">1</td></tr>
+              <tr><td class="mono">10</td><td>fetch</td><td>out_data = R[d1]</td><td class="num">1</td></tr>
+              <tr><td class="mono">12</td><td>branch if zero</td><td>if R[d1] = 0, skip this port's next command</td><td class="num">1</td></tr>
+              <tr><td class="mono">13</td><td>branch if equal</td><td>if R[d1] = R[d2], skip next command</td><td class="num">1</td></tr>
+            </tbody>
+          </table>
+          </div>
+          <p class="tiny muted">Responses: 1 = success, 2 = overflow / underflow / invalid (destination not written), 3 = skipped by a taken branch (no effect).</p>
+        </div>
+        <div class="card">
+          <h3>The ordering rule the testbench relies on</h3>
+          <div class="microarch" id="archCalc3Static"></div>
+          <div class="explain small">Every command takes effect in the cycle it is accepted, in port order 1 → 4. A port-2 fetch sees a port-1 store to the same register made in the same cycle. Only the response is delayed, by 1, 3 or 4 cycles depending on the unit, so a quick <b>fetch</b> can overtake a slow <b>shift</b> on the same port.</div>
+          <p class="small ink2" style="margin-top:12px">That is why the Calc3 scoreboard keys expected results by <b>(port, tag)</b> and feeds the reference model from an <b>input monitor</b> (what the DUT actually sampled) instead of from the sequencer's intentions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="sim">
+  <div class="wrap">
+    <div class="eyebrow">2 · Cycle-accurate simulator</div>
+    <h2>Drive the design yourself</h2>
+    <p class="lede">Queue commands on any port, then step the clock. The driver follows the protocol, the micro-architecture view shows where every command is, the waveform records every signal, and the scoreboard compares each response with the reference model. Pick a bug from the list and see which tests catch it.</p>
+
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-tabgroup="sim" data-tab="sim1">Calc1</button>
+      <button class="tab" data-tabgroup="sim" data-tab="sim3">Calc3</button>
+    </div>
+
+    <div data-pane="sim1">
+      <div class="simgrid">
+        <div class="card ctrl stack" id="c1ctrl">
+          <div>
+            <label class="field">Design variant
+              <select id="c1bug" class="bugsel"></select>
+            </label>
+          </div>
+          <div>
+            <div class="row"><h4 style="margin:0">Stimulus</h4><span class="spacer"></span><span class="tiny muted">cmd · op1 · op2</span></div>
+            <div id="c1ports"></div>
+          </div>
+          <div>
+            <h4 style="margin-bottom:6px">Presets</h4>
+            <div class="presets" id="c1presets"></div>
+          </div>
+          <div class="transport">
+            <button class="btn primary sm" id="c1step">Step ▸</button>
+            <button class="btn sm" id="c1step10">+10</button>
+            <button class="btn sm" id="c1run">Run ▶</button>
+            <button class="btn sm" id="c1reset">Reset</button>
+          </div>
+          <div class="row small"><span class="muted">speed</span><input type="range" id="c1speed" min="1" max="30" value="6" aria-label="Run speed"><span class="spacer"></span><span class="mono tiny" id="c1cyc">cycle 0</span></div>
+        </div>
+        <div class="stack" style="min-width:0">
+          <div class="card">
+            <div class="row"><h3 style="margin:0">Micro-architecture</h3><span class="spacer"></span><span class="tiny muted" id="c1archnote"></span></div>
+            <div class="microarch" id="c1arch"></div>
+          </div>
+          <div class="card">
+            <div class="row"><h3 style="margin:0">Waveform</h3><span class="spacer"></span><span class="legend"><span><i style="background:var(--s1)"></i>request</span><span><i style="background:var(--s3)"></i>response</span><span><i style="background:var(--crit)"></i>X (unknown)</span></span></div>
+            <div class="wave" id="c1wave"></div>
+          </div>
+          <div class="card">
+            <div class="row"><h3 style="margin:0">Scoreboard</h3><span class="spacer"></span><span id="c1score" class="small"></span></div>
+            <div class="logbox" id="c1log"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div data-pane="sim3" hidden>
+      <div class="simgrid">
+        <div class="card ctrl stack" id="c3ctrl">
+          <label class="field">Design variant
+            <select id="c3bug" class="bugsel"></select>
+          </label>
+          <div>
+            <div class="row"><h4 style="margin:0">Stimulus</h4><span class="spacer"></span><span class="tiny muted">cmd · d1 · d2 · r1 · data</span></div>
+            <div id="c3ports"></div>
+          </div>
+          <div>
+            <h4 style="margin-bottom:6px">Presets</h4>
+            <div class="presets" id="c3presets"></div>
+          </div>
+          <div class="transport">
+            <button class="btn primary sm" id="c3step">Step ▸</button>
+            <button class="btn sm" id="c3step10">+10</button>
+            <button class="btn sm" id="c3run">Run ▶</button>
+            <button class="btn sm" id="c3reset">Reset</button>
+          </div>
+          <div class="row small"><span class="muted">speed</span><input type="range" id="c3speed" min="1" max="30" value="6" aria-label="Run speed"><span class="spacer"></span><span class="mono tiny" id="c3cyc">cycle 0</span></div>
+        </div>
+        <div class="stack" style="min-width:0">
+          <div class="grid2">
+            <div class="card">
+              <div class="row"><h3 style="margin:0">Register file</h3><span class="spacer"></span><span class="tiny muted">highlight = written this cycle</span></div>
+              <div class="regfile" id="c3rf"></div>
+            </div>
+            <div class="card">
+              <div class="row"><h3 style="margin:0">Tag slots</h3><span class="spacer"></span><span class="tiny muted">cycles left until response</span></div>
+              <div id="c3slots"></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="row"><h3 style="margin:0">Waveform</h3><span class="spacer"></span><span class="legend"><span><i style="background:var(--s1)"></i>request</span><span><i style="background:var(--s3)"></i>response</span><span><i style="background:var(--s2)"></i>tag</span></span></div>
+            <div class="wave" id="c3wave"></div>
+          </div>
+          <div class="card">
+            <div class="row"><h3 style="margin:0">Scoreboard, keyed by (port, tag)</h3><span class="spacer"></span><span id="c3score" class="small"></span></div>
+            <div class="logbox" id="c3log"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="method">
+  <div class="wrap">
+    <div class="eyebrow">3 · Methodology</div>
+    <h2>A layered, self-checking testbench</h2>
+    <p class="lede">The 2024 testbenches were four copies of the same hand-written sequence, one per port, with a global cycle counter and checks by eye. The rewrite follows the standard verification architecture: every component has one job, the stimulus is constrained-random, the expected result of <em>every</em> transaction comes from an independent reference model, and progress is measured against a coverage plan.</p>
+
+    <div class="card tbdiag" id="tbDiagram"></div>
+
+    <div class="grid3" style="margin-top:20px">
+      <div class="card">
+        <h3>Transaction &amp; generator</h3>
+        <p class="small ink2">A transaction is one command with its operands. The generator randomizes it under constraints that bias toward corners: zero, one, all-ones, tiny shift amounts, carries and borrows, and about 10% illegal opcodes.</p>
+<pre><code>constraint c_cmd { cmd dist {
+  1 := 30, 2 := 30, 5 := 15, 6 := 15,
+  [3:4] :/ 3, [7:15] :/ 7 }; }
+constraint c_op1 { op1 dist {
+  0 := 5, 32'hFFFF_FFFF := 5,
+  [1:15] :/ 10,
+  [16:32'hFFFF_FFFE] :/ 80 }; }</code></pre>
+      </div>
+      <div class="card">
+        <h3>Driver &amp; monitor</h3>
+        <p class="small ink2">One reusable driver per port, working through <b>clocking blocks</b>, so drives land 1 ns after the edge and samples are taken just before it. That removes the posedge/negedge race in the old benches. The monitor watches every edge, pairs each response with the command in flight, and flags X values, spurious responses and hangs (64-cycle timeout).</p>
+<pre><code>vif.drv_cb.cmd[p] &lt;= t.cmd;
+vif.drv_cb.din[p] &lt;= t.op1;
+@(vif.drv_cb);
+vif.drv_cb.cmd[p] &lt;= 0;
+vif.drv_cb.din[p] &lt;= t.op2;</code></pre>
+      </div>
+      <div class="card">
+        <h3>Reference model &amp; scoreboard</h3>
+        <p class="small ink2">The reference model is the spec written as a function, with no timing and nothing shared with the RTL. The scoreboard sorts every outcome into <code>wrong_data</code>, <code>wrong_resp</code>, <code>x_on_output</code>, <code>no_response</code> or <code>spurious</code>, so a failure report already hints at the root cause.</p>
+<pre><code>1: wide = {1'b0,op1} + {1'b0,op2};
+   if (wide[32]) exp_resp = 2;
+   else          exp_data = wide[31:0];
+2: if (op2 &gt; op1) exp_resp = 2;
+   else exp_data = op1 - op2;</code></pre>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <div class="row"><h3 style="margin:0">Run the regression in your browser</h3><span class="spacer"></span><span class="tiny muted">same tests, constraints and coverage plan as the SystemVerilog environment</span></div>
+      <div class="row" style="margin:14px 0">
+        <label class="field">Design <select id="rDesign"><option value="calc1">Calc1</option><option value="calc3">Calc3</option></select></label>
+        <label class="field" style="flex:1;min-width:220px">Variant <select id="rBug" style="width:100%"></select></label>
+        <label class="field">Random txns <input type="number" id="rN" value="2000" min="0" max="50000" step="500" style="width:100px"></label>
+        <label class="field">Seed <input type="number" id="rSeed" value="1" style="width:80px"></label>
+        <button class="btn primary" id="rRun" style="align-self:flex-end">Run regression</button>
+      </div>
+      <div class="grid2">
+        <div>
+          <h4>Coverage plan</h4>
+          <div id="rCov"></div>
+          <h4 style="margin-top:18px">Coverage closure</h4>
+          <div class="chart" id="rCurve"></div>
+          <p class="tiny muted">x: transactions checked · y: share of plan bins hit. Directed tests run first, then constrained-random traffic.</p>
+        </div>
+        <div>
+          <h4>Verdict</h4>
+          <div id="rVerdict" class="small muted">Press “Run regression”.</div>
+          <h4 style="margin-top:14px">First failures</h4>
+          <div class="logbox" id="rFails"><div class="empty">No run yet.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="hunt">
+  <div class="wrap">
+    <div class="eyebrow">4 · Bug hunt</div>
+    <h2>Find the hidden bug</h2>
+    <p class="lede">A random defect is injected into the design. Its name is hidden in the simulator. Use directed tests (presets or your own) and the random regression to work out which bug it is, then make your call.</p>
+    <div class="grid2">
+      <div class="card stack">
+        <div class="row">
+          <div class="seg" id="huntDesign"><button class="active" data-v="calc1">Calc1</button><button data-v="calc3">Calc3</button></div>
+          <button class="btn primary" id="huntNew">New mystery DUT</button>
+          <span class="spacer"></span>
+          <span class="small">Score: <b id="huntScore" class="tnum">0 / 0</b></span>
+        </div>
+        <div id="huntStatus" class="explain small">Press “New mystery DUT” to start.</div>
+        <div class="row">
+          <button class="btn sm" id="huntSim" disabled>Probe it in the simulator</button>
+          <button class="btn sm" id="huntReg" disabled>Run 500 random transactions on it</button>
+        </div>
+        <div id="huntRegOut" class="small"></div>
+      </div>
+      <div class="card">
+        <h3>Your diagnosis</h3>
+        <div class="hunt-choices" id="huntChoices"><p class="small muted">Waiting for a mystery DUT…</p></div>
+        <div id="huntReveal" class="small" style="margin-top:12px"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="findings">
+  <div class="wrap">
+    <div class="eyebrow">5 · What the 2024 campaign found</div>
+    <h2>Reading root causes out of failure logs</h2>
+    <p class="lede">The 2024 campaign ran on the encrypted course DUT in Questa, so there was no RTL to read, only transcripts. Mining those logs again gives a precise fault model for each failure signature. Injecting that model into the open RTL reproduces the logs exactly. Each chart below is drawn from the original log lines.</p>
+
+    <div class="card">
+      <div class="row"><h3 style="margin:0">Finding 1: operand-2 bit 4 is bridged to bit 5 in the port-1 adder</h3><span class="spacer"></span><span class="pill fail"><span class="ic">!</span>50.5% of 1,001,001 ADD checks failed</span></div>
+      <p class="small ink2" style="margin-top:8px">The 2024 bench swept a = 0…1000 × b = 0…1000 on port 1. The saved excerpt covers a = 997…1000. Every failing result contains an <b>X</b> in the second or third hex digit, and nowhere else. One rule explains every line: <b>X appears if and only if bit 4 ≠ bit 5 of operand 2</b> (<span id="f1agree" class="tnum">3,321 / 3,321</span> lines). With the bit-4 net fighting the bit-5 net inside a ripple-carry adder, the open RTL prints exactly the same digits as the 2024 log on all 3,321 lines.</p>
+      <div class="legend"><span><i style="background:var(--crit)"></i>result contained X</span><span><i style="background:var(--grid)"></i>correct</span><span class="muted">rows: a = 997…1000 · columns: b = 0…1000 · hover for the log line</span></div>
+      <canvas class="heat" id="f1heat" height="64" aria-label="Heatmap of X results by operand b"></canvas>
+      <div class="grid2" style="margin-top:18px">
+        <div>
+          <h4>Why a stripe every 64 values?</h4>
+          <p class="small ink2">Bits 4 and 5 of b repeat with period 64: <code>00, 01, 10, 11</code> in runs of 16. X happens on the two middle runs (<code>01</code> and <code>10</code>), so b = 16…47 fails, 48…79 passes, 80…111 fails, and so on: 32 failing values, then 32 passing ones. Drag the slider to see the fault travel through the adder.</p>
+          <div class="row"><input type="range" id="f1b" min="0" max="1000" value="683" style="flex:1" aria-label="Operand b"><span class="mono">b = <b id="f1bv">683</b></span></div>
+          <div class="row"><span class="small muted">a =</span><div class="seg" id="f1a"><button data-v="997" class="active">997</button><button data-v="998">998</button><button data-v="999">999</button><button data-v="1000">1000</button></div></div>
+        </div>
+        <div>
+          <div class="bits" id="f1bits"></div>
+          <div class="small" id="f1line" style="margin-top:10px"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid2" style="margin-top:20px">
+      <div class="card">
+        <h3>Finding 2: port-1 SUB answers 0</h3>
+        <p class="small ink2">Across 0…10 × 0…10, 109 of the 111 wrong results read back 0 (the other two were X). Borrows were never flagged. The only passes were a − a, whose true answer is 0 anyway: 10 of the 11 equal pairs (0 − 0 read back X).</p>
+        <div class="chart" id="f2grid"></div>
+        <div class="legend"><span><i style="background:var(--good)"></i>correct</span><span><i style="background:var(--crit)"></i>wrong (0)</span><span><i style="background:var(--s4)"></i>wrong (X)</span><span class="muted">x: op2 · y: op1</span></div>
+      </div>
+      <div class="card">
+        <h3>Findings 3 &amp; 4: shifts by 0 and 1</h3>
+        <p class="small ink2">SHL by 0 gave X for every non-zero operand (0 &lt;&lt; 0 still read 0). SHR by 0 gave 0, and SHR by 1 returned the operand unshifted. All other amounts were correct: <span id="f3stat" class="tnum">60</span> failures in 1,344 checks, all in columns 0 and 1. Replaying the sweep on the open RTL with bugs 3 and 4 gives the same 1,344 results.</p>
+        <div class="seg" id="f3op" style="margin-bottom:8px"><button class="active" data-v="SLL">SHL (&lt;&lt;)</button><button data-v="SRL">SHR (&gt;&gt;)</button></div>
+        <div class="chart" id="f3grid"></div>
+        <div class="legend"><span><i style="background:var(--good)"></i>correct</span><span><i style="background:var(--crit)"></i>wrong</span><span class="muted">x: shift amount 0…31 · y: operand 0…20</span></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <h3>Finding 5: the 2024 Calc3 scoreboard was the loudest source of errors</h3>
+      <div class="grid2">
+        <div>
+          <p class="small ink2">The Calc3 environment reported <b id="f5c" class="tnum">4,442</b> matches and <b id="f5e" class="tnum">1,408</b> mismatches. Replaying its logic line by line shows that most mismatches came from the checker, not the DUT:</p>
+          <ul class="small ink2">
+            <li>On <b>every</b> DUT response it compared <b>all four</b> ports, so ports that had not answered re-matched a stale value (703) and inflated the "correct" count (<span id="f5s" class="tnum">500</span> stale matches in the saved excerpt alone).</li>
+            <li>The reference model was loaded with <code>ports[i-1]</code>, off by one and out of range for i = 0, and then re-executed the last command of all four ports on each check.</li>
+            <li>Responses were matched by port only, never by tag, so every legal out-of-order response became a "tag mismatch", which is the largest bar on the right.</li>
+          </ul>
+          <p class="small ink2">The rewrite fixes all three: an input monitor feeds the predictor, expected results are keyed by (port, tag), and only the responding port is checked.</p>
+        </div>
+        <div>
+          <div class="chart" id="f5bars"></div>
+          <p class="tiny muted">Mismatch kinds in the saved 2024 log excerpt (132 mismatches).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <h3>Verifying the verifier: bugs in the 2024 testbenches</h3>
+      <p class="small ink2">A testbench is code too, and it had bugs. These are the ones that changed the verdicts, with the fix in the rewrite.</p>
+      <details open>
+        <summary>Response 2 treated as “no response”</summary>
+        <div class="cmp">
+          <div class="old"><pre><code>while (out_resp1 !== 2'b01) begin   // 2024
+  @(negedge c_clk);
+  if (clk_count &gt;= 50 ...) break;</code></pre></div>
+          <div class="new"><pre><code>if (r !== RSP_NONE) finish_txn(p, r, d);   // 2026
+// resp 2 is a legal answer: checked against
+// the reference model like any other</code></pre></div>
+        </div>
+        <p class="small ink2">Overflow, underflow and invalid-command responses were counted as hangs. That is where the "No Response: 120" in the SUB log comes from.</p>
+      </details>
+      <details>
+        <summary>A global cycle counter that never resets</summary>
+        <p class="small ink2"><code>clk_count</code> counted from time 0 and the wait loops broke out once it passed 50 (or 100). After the first ~50 cycles every later wait returned at once, so later operations were "checked" before their response existed. The rewrite uses a per-transaction timeout measured from its own issue cycle.</p>
+      </details>
+      <details>
+        <summary>Race between stimulus and DUT sampling</summary>
+        <p class="small ink2">Commands were written with blocking assignments right after <code>@(posedge c_clk)</code>, the same edge on which the DUT samples, and operand 2 half a cycle later. Which value the DUT sees depends on scheduling order. The rewrite drives through clocking blocks (<code>output #1</code>) and samples with <code>input #1step</code>.</p>
+      </details>
+      <details>
+        <summary>Four copies of every test, and messages that lie</summary>
+        <p class="small ink2">Each scenario was pasted four times (one per port), and the NO-OP check printed "successful" in the failure branch and "failed" in the success branch. The rewrite has one parameterized driver per port and a scoreboard that prints the expected and the actual values.</p>
+      </details>
+      <details>
+        <summary>Calc3: scan clocks driven with the functional clock</summary>
+        <p class="small ink2"><code>a_clk</code> and <code>b_clk</code> are the LSSD scan clocks. The test toggled them together with <code>c_clk</code>, which puts a real LSSD design into scan-shift mode. They are now held low.</p>
+      </details>
+      <details>
+        <summary>Coverage that measured the stimulus, not the plan</summary>
+        <p class="small ink2">The 2024 covergroup sampled input fields (tags, register indices) on every negedge, including idle cycles, and had no coverpoint for the command itself. The new model counts plan items: command × port, every shift amount, carries and borrows per port, walking ones, taken and not-taken branches, skipped-command kinds, outstanding depth, out-of-order responses and hazards.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="results">
+  <div class="wrap">
+    <div class="eyebrow">6 · Regression results</div>
+    <h2>Every bug caught, no false alarms</h2>
+    <p class="lede">The SystemVerilog environments were compiled with Verilator 5.052 (classes, mailboxes, constrained randomization through an SMT solver) once per design variant. The golden design has to pass and every injected bug has to fail. Seeds 1–3 are shown; the “first failure” column is the scoreboard’s own message.</p>
+    <div class="card">
+      <div class="row" style="margin-bottom:10px"><div class="seg" id="resDesign"><button class="active" data-v="calc1">Calc1</button><button data-v="calc3">Calc3</button></div><span class="spacer"></span><span class="small muted" id="resMeta"></span></div>
+      <div class="tablewrap"><table id="resTable"></table></div>
+    </div>
+    <div class="grid3" style="margin-top:20px">
+      <div class="card">
+        <h3>Replaying 2024 on the open RTL</h3>
+        <p class="small ink2"><code>sim/check_replay.py</code> re-runs the 2024 port-1 sweeps on Icarus Verilog (4-state, like Questa) and diffs every result line against the old logs.</p>
+        <div id="replayStats" class="small"></div>
+      </div>
+      <div class="card">
+        <h3>JavaScript ≡ RTL</h3>
+        <p class="small ink2"><code>sim/check_js_models.py</code> drives random stimulus, including protocol violations, into the Verilog and into this page’s models, and compares all outputs on every cycle, for every bug.</p>
+        <div id="equivStats" class="small"></div>
+      </div>
+      <div class="card">
+        <h3>Where the time goes</h3>
+        <p class="small ink2">Each SV regression run takes one to two minutes, mostly spent in the SMT solver behind <code>randomize()</code>. The same tests in this page’s JavaScript bench run in well under a second.</p>
+        <div id="timeStats" class="small"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="run">
+  <div class="wrap">
+    <div class="eyebrow">7 · Reproduce it</div>
+    <h2>Run everything locally</h2>
+    <div class="grid2">
+      <div class="card">
+        <ol class="toc-steps">
+          <li><b>Tools</b>: Verilator ≥ 5.036 with <code>z3</code> (the constrained-random TB), Icarus Verilog 12 (4-state replay and trace checks), Python 3, Node 18+.</li>
+          <li><b>Build</b> all 16 variants: <code>sim/build.sh</code></li>
+          <li><b>Regress</b>: <code>python3 sim/regress.py --seeds 1,2,3 --jobs 4</code></li>
+          <li><b>Replay 2024</b>: <code>python3 sim/check_replay.py</code></li>
+          <li><b>Check the web models</b>: <code>python3 sim/check_js_models.py</code></li>
+          <li><b>Re-mine the logs</b>: <code>python3 analysis/analyze_2024_logs.py</code></li>
+        </ol>
+        <p class="small ink2">With Questa and the course’s encrypted <code>calc1_top.v</code> / <code>calc3_top.v</code>, the same <code>tb/</code> files compile unchanged: the port lists match, and the <code>BUG</code> parameter is simply ignored.</p>
+      </div>
+      <div class="card">
+<pre><code>rtl/calc1/calc1_top.v        open Calc1 reference + 7 bugs
+rtl/calc3/calc3_top.v        open Calc3 reference + 7 bugs
+tb/calc1/calc1_if.sv         interface + clocking blocks
+tb/calc1/calc1_pkg.sv        txn, ref model, coverage,
+                             scoreboard, env, tests
+tb/calc1/calc1_tb_top.sv     top: +TEST= +N= +SEED=
+tb/calc1/calc1_replay_2024.v 4-state replay of 2024 sweeps
+tb/calc3/...                 same structure for Calc3
+tb/trace/                    cycle-trace harnesses
+sim/                         build, regress, replay, JS≡RTL
+analysis/                    2024 log mining
+results/                     logs, regression.json
+docs/                        this website</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap row">
+    <span>Nitish Sundarraj · COEN 6541 Functional Hardware Verification, Concordia University (2024), revisited 2026</span>
+    <span class="spacer"></span>
+    <a href="https://github.com/sundarrajnitish/Calc-Functional-Verification">github.com/sundarrajnitish/Calc-Functional-Verification</a>
+  </div>
+</footer>
+
+<div class="tooltip" id="tip" role="status"></div>
+
+<script src="js/calc1_model.js"></script>
+<script src="js/calc3_model.js"></script>
+<script src="js/bench.js"></script>
+<script src="js/wave.js"></script>
+<script src="js/ui_sim.js"></script>
+<script src="js/ui_method.js"></script>
+<script src="js/ui_findings.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
