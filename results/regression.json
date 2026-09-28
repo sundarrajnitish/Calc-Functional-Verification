@@ -1,0 +1,3240 @@
+[
+ {
+  "design": "calc1",
+  "test": "regress",
+  "bug": 0,
+  "checked": 2640,
+  "pass": 2640,
+  "fail": 0,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    16,
+    16
+   ],
+   "invalid_opcodes": [
+    11,
+    11
+   ],
+   "operand_classes": [
+    10,
+    10
+   ],
+   "shift_amounts": [
+    64,
+    64
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "sub_equal": [
+    1,
+    1
+   ],
+   "add_walking_one_op2": [
+    32,
+    32
+   ],
+   "concurrency_1to4": [
+    4,
+    4
+   ],
+   "responses": [
+    6,
+    6
+   ]
+  },
+  "fail_kinds": {},
+  "fail_cmds": {},
+  "first_fail": "",
+  "seed": 1,
+  "seconds": 70.5,
+  "description": "golden (no bug)",
+  "verdict": "PASS"
+ },
+ {
+  "design": "calc1",
+  "test": "regress",
+  "bug": 0,
+  "checked": 2640,
+  "pass": 2640,
+  "fail": 0,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    16,
+    16
+   ],
+   "invalid_opcodes": [
+    11,
+    11
+   ],
+   "operand_classes": [
+    10,
+    10
+   ],
+   "shift_amounts": [
+    64,
+    64
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "sub_equal": [
+    1,
+    1
+   ],
+   "add_walking_one_op2": [
+    32,
+    32
+   ],
+   "concurrency_1to4": [
+    4,
+    4
+   ],
+   "responses": [
+    6,
+    6
+   ]
+  },
+  "fail_kinds": {},
+  "fail_cmds": {},
+  "first_fail": "",
+  "seed": 2,
+  "seconds": 73.1,
+  "description": "golden (no bug)",
+  "verdict": "PASS"
+ },
+ {
+  "design": "calc1",
+  "test": "regress",
+  "bug": 0,
+  "checked": 2640,
+  "pass": 2640,
+  "fail": 0,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    16,
+    16
+   ],
+   "invalid_opcodes": [
+    11,
+    11
+   ],
+   "operand_classes": [
+    10,
+    10
+   ],
+   "shift_amounts": [
+    64,
+    64
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "sub_equal": [
+    1,
+    1
+   ],
+   "add_walking_one_op2": [
+    32,
+    32
+   ],
+   "concurrency_1to4": [
+    4,
+    4
+   ],
+   "responses": [
+    6,
+    6
+   ]
+  },
+  "fail_kinds": {},
+  "fail_cmds": {},
+  "first_fail": "",
+  "seed": 3,
+  "seconds": 70.6,
+  "description": "golden (no bug)",
+  "verdict": "PASS"
+ },
+ {
+  "design": "calc1",
+  "test": "regress",
+  "bug": 1,
+  "checked": 2640,
+  "pass": 2575,
+  "fail": 65,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    16,
+    16
+   ],
+   "invalid_opcodes": [
+    11,
+    11
+   ],
+   "operand_classes": [
+    10,
+    10
+   ],
+   "shift_amounts": [
+    64,
+    64
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "sub_equal": [
+    1,
+    1
+   ],
+   "add_walking_one_op2": [
+    32,
+    32
+   ],
+   "concurrency_1to4": [
+    4,
+    4
+   ],
+   "responses": [
+    6,
+    6
+   ]
+  },
+  "fail_kinds": {
+   "wrong_data": 65
+  },
+  "fail_cmds": {
+   "ADD": 38,
+   "SUB": 27
+  },
+  "first_fail": "[FAIL:wrong_data] #21 P1 SUB op1=0x000004d2 op2=0x000004d2 | exp resp=1 data=0x00000000 | got resp=01 data=0x00000010 (lat 7)",
+  "seed": 1,
+  "seconds": 73.5,
+  "description": "Port-1 adder: operand-2 bit 4 bridged to bit 5",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc1",
+  "test": "regress",
+  "bug": 1,
+  "checked": 2640,
+  "pass": 2569,
+  "fail": 71,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    16,
+    16
+   ],
+   "invalid_opcodes": [
+    11,
+    11
+   ],
+   "operand_classes": [
+    10,
+    10
+   ],
+   "shift_amounts": [
+    64,
+    64
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "sub_equal": [
+    1,
+    1
+   ],
+   "add_walking_one_op2": [
+    32,
+    32
+   ],
+   "concurrency_1to4": [
+    4,
+    4
+   ],
+   "responses": [
+    6,
+    6
+   ]
+  },
+  "fail_kinds": {
+   "wrong_data": 71
+  },
+  "fail_cmds": {
+   "ADD": 40,
+   "SUB": 31
+  },
+  "first_fail": "[FAIL:wrong_data] #21 P1 SUB op1=0x000004d2 op2=0x000004d2 | exp resp=1 data=0x00000000 | got resp=01 data=0x00000010 (lat 7)",
+  "seed": 2,
+  "seconds": 76.6,
+  "description": "Port-1 adder: operand-2 bit 4 bridged to bit 5",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc1",
+  "test": "regress",
+  "bug": 1,
+  "checked": 2640,
+  "pass": 2570,
+  "fail": 70,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    16,
+    16
+   ],
+   "invalid_opcodes": [
+    11,
+    11
+   ],
+   "operand_classes": [
+    10,
+    10
+   ],
+   "shift_amounts": [
+    64,
+    64
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "sub_equal": [
+    1,
+    1
+   ],
+   "add_walking_one_op2": [
+    32,
+    32
+   ],
+   "concurrency_1to4": [
+    4,
+    4
+   ],
+   "responses": [
+    6,
+    6
+   ]
+  },
+  "fail_kinds": {
+   "wrong_data": 69,
+   "wrong_resp": 1
+  },
+  "fail_cmds": {
+   "ADD": 36,
+   "SUB": 34
+  },
+  "first_fail": "[FAIL:wrong_data] #21 P1 SUB op1=0x000004d2 op2=0x000004d2 | exp resp=1 data=0x00000000 | got resp=01 data=0x00000010 (lat 7)",
+  "seed": 3,
+  "seconds": 75.0,
+  "description": "Port-1 adder: operand-2 bit 4 bridged to bit 5",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc1",
+  "test": "regress",
+  "bug": 2,
+  "checked": 2640,
+  "pass": 2485,
+  "fail": 155,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    16,
+    16
+   ],
+   "invalid_opcodes": [
+    11,
+    11
+   ],
+   "operand_classes": [
+    10,
+    10
+   ],
+   "shift_amounts": [
+    64,
+    64
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "sub_equal": [
+    1,
+    1
+   ],
+   "add_walking_one_op2": [
+    32,
+    32
+   ],
+   "concurrency_1to4": [
+    4,
+    4
+   ],
+   "responses": [
+    6,
+    6
+   ]
+  },
+  "fail_kinds": {
+   "wrong_data": 98,
+   "wrong_resp": 57
+  },
+  "fail_cmds": {
+   "SUB": 155
+  },
+  "first_fail": "[FAIL:wrong_data] #1 P1 SUB op1=0x0000000a op2=0x00000003 | exp resp=1 data=0x00000007 | got resp=01 data=0x00000000 (lat 7)",
+  "seed": 1,
+  "seconds": 72.2,
+  "description": "Port-1 SUB result stuck at 0, borrow never flagged",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc1",
+  "test": "regress",
+  "bug": 2,
+  "checked": 2640,
+  "pass": 2475,
+  "fail": 165,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    16,
+    16
+   ],
+   "invalid_opcodes": [
+    11,
+    11
+   ],
+   "operand_classes": [
+    10,
+    10
+   ],
+   "shift_amounts": [
+    64,
+    64
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "sub_equal": [
+    1,
+    1
+   ],
+   "add_walking_one_op2": [
+    32,
+    32
+   ],
+   "concurrency_1to4": [
+    4,
+    4
+   ],
+   "responses": [
+    6,
+    6
+   ]
+  },
+  "fail_kinds": {
+   "wrong_data": 101,
+   "wrong_resp": 64
+  },
+  "fail_cmds": {
+   "SUB": 165
+  },
+  "first_fail": "[FAIL:wrong_data] #1 P1 SUB op1=0x0000000a op2=0x00000003 | exp resp=1 data=0x00000007 | got resp=01 data=0x00000000 (lat 7)",
+  "seed": 2,
+  "seconds": 72.8,
+  "description": "Port-1 SUB result stuck at 0, borrow never flagged",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc1",
+  "test": "regress",
+  "bug": 2,
+  "checked": 2640,
+  "pass": 2474,
+  "fail": 166,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    16,
+    16
+   ],
+   "invalid_opcodes": [
+    11,
+    11
+   ],
+   "operand_classes": [
+    10,
+    10
+   ],
+   "shift_amounts": [
+    64,
+    64
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "sub_equal": [
+    1,
+    1
+   ],
+   "add_walking_one_op2": [
+    32,
+    32
+   ],
+   "concurrency_1to4": [
+    4,
+    4
+   ],
+   "responses": [
+    6,
+    6
+   ]
+  },
+  "fail_kinds": {
+   "wrong_data": 91,
+   "wrong_resp": 75
+  },
+  "fail_cmds": {
+   "SUB": 166
+  },
+  "first_fail": "[FAIL:wrong_data] #1 P1 SUB op1=0x0000000a op2=0x00000003 | exp resp=1 data=0x00000007 | got resp=01 data=0x00000000 (lat 7)",
+  "seed": 3,
+  "seconds": 69.3,
+  "description": "Port-1 SUB result stuck at 0, borrow never flagged",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc1",
+  "test": "regress",
+  "bug": 3,
+  "checked": 2640,
+  "pass": 2616,
+  "fail": 24,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    16,
+    16
+   ],
+   "invalid_opcodes": [
+    11,
+    11
+   ],
+   "operand_classes": [
+    10,
+    10
+   ],
+   "shift_amounts": [
+    64,
+    64
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "sub_equal": [
+    1,
+    1
+   ],
+   "add_walking_one_op2": [
+    32,
+    32
+   ],
+   "concurrency_1to4": [
+    4,
+    4
+   ],
+   "responses": [
+    6,
+    6
+   ]
+  },
+  "fail_kinds": {
+   "wrong_data": 24
+  },
+  "fail_cmds": {
+   "SHL": 24
+  },
+  "first_fail": "[FAIL:wrong_data] #24 P1 SHL op1=0xa5a50f0f op2=0x00000000 | exp resp=1 data=0xa5a50f0f | got resp=01 data=0x00000000 (lat 7)",
+  "seed": 1,
+  "seconds": 73.8,
+  "description": "SHL by 0 drives X on every set bit",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc1",
+  "test": "regress",
+  "bug": 3,
+  "checked": 2640,
+  "pass": 2615,
+  "fail": 25,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    16,
+    16
+   ],
+   "invalid_opcodes": [
+    11,
+    11
+   ],
+   "operand_classes": [
+    10,
+    10
+   ],
+   "shift_amounts": [
+    64,
+    64
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "sub_equal": [
+    1,
+    1
+   ],
+   "add_walking_one_op2": [
+    32,
+    32
+   ],
+   "concurrency_1to4": [
+    4,
+    4
+   ],
+   "responses": [
+    6,
+    6
+   ]
+  },
+  "fail_kinds": {
+   "wrong_data": 25
+  },
+  "fail_cmds": {
+   "SHL": 25
+  },
+  "first_fail": "[FAIL:wrong_data] #24 P1 SHL op1=0xa5a50f0f op2=0x00000000 | exp resp=1 data=0xa5a50f0f | got resp=01 data=0x00000000 (lat 7)",
+  "seed": 2,
+  "seconds": 72.4,
+  "description": "SHL by 0 drives X on every set bit",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc1",
+  "test": "regress",
+  "bug": 3,
+  "checked": 2640,
+  "pass": 2625,
+  "fail": 15,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    16,
+    16
+   ],
+   "invalid_opcodes": [
+    11,
+    11
+   ],
+   "operand_classes": [
+    10,
+    10
+   ],
+   "shift_amounts": [
+    64,
+    64
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "sub_equal": [
+    1,
+    1
+   ],
+   "add_walking_one_op2": [
+    32,
+    32
+   ],
+   "concurrency_1to4": [
+    4,
+    4
+   ],
+   "responses": [
+    6,
+    6
+   ]
+  },
+  "fail_kinds": {
+   "wrong_data": 15
+  },
+  "fail_cmds": {
+   "SHL": 15
+  },
+  "first_fail": "[FAIL:wrong_data] #24 P1 SHL op1=0xa5a50f0f op2=0x00000000 | exp resp=1 data=0xa5a50f0f | got resp=01 data=0x00000000 (lat 7)",
+  "seed": 3,
+  "seconds": 68.7,
+  "description": "SHL by 0 drives X on every set bit",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc1",
+  "test": "regress",
+  "bug": 4,
+  "checked": 2640,
+  "pass": 2612,
+  "fail": 28,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    16,
+    16
+   ],
+   "invalid_opcodes": [
+    11,
+    11
+   ],
+   "operand_classes": [
+    10,
+    10
+   ],
+   "shift_amounts": [
+    64,
+    64
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "sub_equal": [
+    1,
+    1
+   ],
+   "add_walking_one_op2": [
+    32,
+    32
+   ],
+   "concurrency_1to4": [
+    4,
+    4
+   ],
+   "responses": [
+    6,
+    6
+   ]
+  },
+  "fail_kinds": {
+   "wrong_data": 28
+  },
+  "fail_cmds": {
+   "SHR": 28
+  },
+  "first_fail": "[FAIL:wrong_data] #25 P1 SHR op1=0xf0f05a5a op2=0x00000000 | exp resp=1 data=0xf0f05a5a | got resp=01 data=0x00000000 (lat 7)",
+  "seed": 1,
+  "seconds": 68.4,
+  "description": "SHR by 0 returns 0, SHR by 1 does not shift",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc1",
+  "test": "regress",
+  "bug": 4,
+  "checked": 2640,
+  "pass": 2603,
+  "fail": 37,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    16,
+    16
+   ],
+   "invalid_opcodes": [
+    11,
+    11
+   ],
+   "operand_classes": [
+    10,
+    10
+   ],
+   "shift_amounts": [
+    64,
+    64
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "sub_equal": [
+    1,
+    1
+   ],
+   "add_walking_one_op2": [
+    32,
+    32
+   ],
+   "concurrency_1to4": [
+    4,
+    4
+   ],
+   "responses": [
+    6,
+    6
+   ]
+  },
+  "fail_kinds": {
+   "wrong_data": 37
+  },
+  "fail_cmds": {
+   "SHR": 37
+  },
+  "first_fail": "[FAIL:wrong_data] #25 P1 SHR op1=0xf0f05a5a op2=0x00000000 | exp resp=1 data=0xf0f05a5a | got resp=01 data=0x00000000 (lat 7)",
+  "seed": 2,
+  "seconds": 66.0,
+  "description": "SHR by 0 returns 0, SHR by 1 does not shift",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc1",
+  "test": "regress",
+  "bug": 4,
+  "checked": 2640,
+  "pass": 2602,
+  "fail": 38,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    16,
+    16
+   ],
+   "invalid_opcodes": [
+    11,
+    11
+   ],
+   "operand_classes": [
+    10,
+    10
+   ],
+   "shift_amounts": [
+    64,
+    64
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "sub_equal": [
+    1,
+    1
+   ],
+   "add_walking_one_op2": [
+    32,
+    32
+   ],
+   "concurrency_1to4": [
+    4,
+    4
+   ],
+   "responses": [
+    6,
+    6
+   ]
+  },
+  "fail_kinds": {
+   "wrong_data": 38
+  },
+  "fail_cmds": {
+   "SHR": 38
+  },
+  "first_fail": "[FAIL:wrong_data] #25 P1 SHR op1=0xf0f05a5a op2=0x00000000 | exp resp=1 data=0xf0f05a5a | got resp=01 data=0x00000000 (lat 7)",
+  "seed": 3,
+  "seconds": 66.3,
+  "description": "SHR by 0 returns 0, SHR by 1 does not shift",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc1",
+  "test": "regress",
+  "bug": 5,
+  "checked": 2640,
+  "pass": 2424,
+  "fail": 216,
+  "spurious": 0,
+  "coverage": 99.34,
+  "cov": {
+   "cmd_x_port": [
+    16,
+    16
+   ],
+   "invalid_opcodes": [
+    11,
+    11
+   ],
+   "operand_classes": [
+    10,
+    10
+   ],
+   "shift_amounts": [
+    64,
+    64
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "sub_equal": [
+    1,
+    1
+   ],
+   "add_walking_one_op2": [
+    32,
+    32
+   ],
+   "concurrency_1to4": [
+    4,
+    4
+   ],
+   "responses": [
+    5,
+    6
+   ]
+  },
+  "fail_kinds": {
+   "wrong_resp": 216
+  },
+  "fail_cmds": {
+   "ADD": 216
+  },
+  "first_fail": "[FAIL:wrong_resp] #16 P1 ADD op1=0xffffffff op2=0x00000001 | exp resp=2 data=0x00000000 | got resp=01 data=0x00000000 (lat 7)",
+  "seed": 1,
+  "seconds": 66.7,
+  "description": "ADD carry-out (overflow) not reported",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc1",
+  "test": "regress",
+  "bug": 5,
+  "checked": 2640,
+  "pass": 2436,
+  "fail": 204,
+  "spurious": 0,
+  "coverage": 99.34,
+  "cov": {
+   "cmd_x_port": [
+    16,
+    16
+   ],
+   "invalid_opcodes": [
+    11,
+    11
+   ],
+   "operand_classes": [
+    10,
+    10
+   ],
+   "shift_amounts": [
+    64,
+    64
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "sub_equal": [
+    1,
+    1
+   ],
+   "add_walking_one_op2": [
+    32,
+    32
+   ],
+   "concurrency_1to4": [
+    4,
+    4
+   ],
+   "responses": [
+    5,
+    6
+   ]
+  },
+  "fail_kinds": {
+   "wrong_resp": 204
+  },
+  "fail_cmds": {
+   "ADD": 204
+  },
+  "first_fail": "[FAIL:wrong_resp] #16 P1 ADD op1=0xffffffff op2=0x00000001 | exp resp=2 data=0x00000000 | got resp=01 data=0x00000000 (lat 7)",
+  "seed": 2,
+  "seconds": 68.3,
+  "description": "ADD carry-out (overflow) not reported",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc1",
+  "test": "regress",
+  "bug": 5,
+  "checked": 2640,
+  "pass": 2437,
+  "fail": 203,
+  "spurious": 0,
+  "coverage": 99.34,
+  "cov": {
+   "cmd_x_port": [
+    16,
+    16
+   ],
+   "invalid_opcodes": [
+    11,
+    11
+   ],
+   "operand_classes": [
+    10,
+    10
+   ],
+   "shift_amounts": [
+    64,
+    64
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "sub_equal": [
+    1,
+    1
+   ],
+   "add_walking_one_op2": [
+    32,
+    32
+   ],
+   "concurrency_1to4": [
+    4,
+    4
+   ],
+   "responses": [
+    5,
+    6
+   ]
+  },
+  "fail_kinds": {
+   "wrong_resp": 203
+  },
+  "fail_cmds": {
+   "ADD": 203
+  },
+  "first_fail": "[FAIL:wrong_resp] #16 P1 ADD op1=0xffffffff op2=0x00000001 | exp resp=2 data=0x00000000 | got resp=01 data=0x00000000 (lat 7)",
+  "seed": 3,
+  "seconds": 71.9,
+  "description": "ADD carry-out (overflow) not reported",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc1",
+  "test": "regress",
+  "bug": 6,
+  "checked": 2640,
+  "pass": 1509,
+  "fail": 1131,
+  "spurious": 0,
+  "coverage": 96.71,
+  "cov": {
+   "cmd_x_port": [
+    13,
+    16
+   ],
+   "invalid_opcodes": [
+    11,
+    11
+   ],
+   "operand_classes": [
+    10,
+    10
+   ],
+   "shift_amounts": [
+    64,
+    64
+   ],
+   "ovf_unf_x_port": [
+    6,
+    8
+   ],
+   "sub_equal": [
+    1,
+    1
+   ],
+   "add_walking_one_op2": [
+    32,
+    32
+   ],
+   "concurrency_1to4": [
+    4,
+    4
+   ],
+   "responses": [
+    6,
+    6
+   ]
+  },
+  "fail_kinds": {
+   "no_response": 1131
+  },
+  "fail_cmds": {
+   "ADD": 315,
+   "INV10": 4,
+   "INV11": 6,
+   "INV12": 9,
+   "INV13": 9,
+   "INV14": 10,
+   "INV15": 8,
+   "INV3": 18,
+   "INV4": 17,
+   "INV7": 8,
+   "INV8": 11,
+   "INV9": 11,
+   "SHL": 207,
+   "SHR": 180,
+   "SUB": 318
+  },
+  "first_fail": "[FAIL:no_response] #12 P4 ADD op1=0x00000005 op2=0x00000003 | exp resp=1 data=0x00000008 | got resp=00 data=0x00000000 (lat 65)",
+  "seed": 1,
+  "seconds": 68.2,
+  "description": "Port-4 request dropped when port 1 wins arbitration",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc1",
+  "test": "regress",
+  "bug": 6,
+  "checked": 2640,
+  "pass": 1483,
+  "fail": 1157,
+  "spurious": 0,
+  "coverage": 96.71,
+  "cov": {
+   "cmd_x_port": [
+    13,
+    16
+   ],
+   "invalid_opcodes": [
+    11,
+    11
+   ],
+   "operand_classes": [
+    10,
+    10
+   ],
+   "shift_amounts": [
+    64,
+    64
+   ],
+   "ovf_unf_x_port": [
+    6,
+    8
+   ],
+   "sub_equal": [
+    1,
+    1
+   ],
+   "add_walking_one_op2": [
+    32,
+    32
+   ],
+   "concurrency_1to4": [
+    4,
+    4
+   ],
+   "responses": [
+    6,
+    6
+   ]
+  },
+  "fail_kinds": {
+   "no_response": 1157
+  },
+  "fail_cmds": {
+   "ADD": 344,
+   "INV10": 8,
+   "INV11": 12,
+   "INV12": 8,
+   "INV13": 16,
+   "INV14": 10,
+   "INV15": 11,
+   "INV3": 17,
+   "INV4": 14,
+   "INV7": 4,
+   "INV8": 6,
+   "INV9": 5,
+   "SHL": 219,
+   "SHR": 191,
+   "SUB": 292
+  },
+  "first_fail": "[FAIL:no_response] #12 P4 ADD op1=0x00000005 op2=0x00000003 | exp resp=1 data=0x00000008 | got resp=00 data=0x00000000 (lat 65)",
+  "seed": 2,
+  "seconds": 68.9,
+  "description": "Port-4 request dropped when port 1 wins arbitration",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc1",
+  "test": "regress",
+  "bug": 6,
+  "checked": 2640,
+  "pass": 1487,
+  "fail": 1153,
+  "spurious": 0,
+  "coverage": 96.71,
+  "cov": {
+   "cmd_x_port": [
+    13,
+    16
+   ],
+   "invalid_opcodes": [
+    11,
+    11
+   ],
+   "operand_classes": [
+    10,
+    10
+   ],
+   "shift_amounts": [
+    64,
+    64
+   ],
+   "ovf_unf_x_port": [
+    6,
+    8
+   ],
+   "sub_equal": [
+    1,
+    1
+   ],
+   "add_walking_one_op2": [
+    32,
+    32
+   ],
+   "concurrency_1to4": [
+    4,
+    4
+   ],
+   "responses": [
+    6,
+    6
+   ]
+  },
+  "fail_kinds": {
+   "no_response": 1153
+  },
+  "fail_cmds": {
+   "ADD": 357,
+   "INV10": 7,
+   "INV11": 11,
+   "INV12": 10,
+   "INV13": 14,
+   "INV14": 9,
+   "INV15": 9,
+   "INV3": 15,
+   "INV4": 11,
+   "INV7": 7,
+   "INV8": 15,
+   "INV9": 8,
+   "SHL": 220,
+   "SHR": 189,
+   "SUB": 271
+  },
+  "first_fail": "[FAIL:no_response] #12 P4 ADD op1=0x00000005 op2=0x00000003 | exp resp=1 data=0x00000008 | got resp=00 data=0x00000000 (lat 65)",
+  "seed": 3,
+  "seconds": 70.6,
+  "description": "Port-4 request dropped when port 1 wins arbitration",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc1",
+  "test": "regress",
+  "bug": 7,
+  "checked": 2640,
+  "pass": 308,
+  "fail": 2332,
+  "spurious": 0,
+  "coverage": 73.03,
+  "cov": {
+   "cmd_x_port": [
+    16,
+    16
+   ],
+   "invalid_opcodes": [
+    1,
+    11
+   ],
+   "operand_classes": [
+    9,
+    10
+   ],
+   "shift_amounts": [
+    64,
+    64
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "sub_equal": [
+    1,
+    1
+   ],
+   "add_walking_one_op2": [
+    2,
+    32
+   ],
+   "concurrency_1to4": [
+    4,
+    4
+   ],
+   "responses": [
+    6,
+    6
+   ]
+  },
+  "fail_kinds": {
+   "no_response": 2332
+  },
+  "fail_cmds": {
+   "ADD": 783,
+   "INV10": 9,
+   "INV11": 18,
+   "INV12": 24,
+   "INV13": 22,
+   "INV14": 15,
+   "INV15": 15,
+   "INV3": 29,
+   "INV4": 32,
+   "INV7": 22,
+   "INV8": 22,
+   "INV9": 25,
+   "SHL": 376,
+   "SHR": 303,
+   "SUB": 637
+  },
+  "first_fail": "[FAIL:no_response] #89 P1 INV3 op1=0x00000007 op2=0x00000002 | exp resp=2 data=0x00000000 | got resp=00 data=0x00000000 (lat 65)",
+  "seed": 1,
+  "seconds": 69.9,
+  "description": "Invalid command never answered",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc1",
+  "test": "regress",
+  "bug": 7,
+  "checked": 2640,
+  "pass": 308,
+  "fail": 2332,
+  "spurious": 0,
+  "coverage": 73.03,
+  "cov": {
+   "cmd_x_port": [
+    16,
+    16
+   ],
+   "invalid_opcodes": [
+    1,
+    11
+   ],
+   "operand_classes": [
+    9,
+    10
+   ],
+   "shift_amounts": [
+    64,
+    64
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "sub_equal": [
+    1,
+    1
+   ],
+   "add_walking_one_op2": [
+    2,
+    32
+   ],
+   "concurrency_1to4": [
+    4,
+    4
+   ],
+   "responses": [
+    6,
+    6
+   ]
+  },
+  "fail_kinds": {
+   "no_response": 2332
+  },
+  "fail_cmds": {
+   "ADD": 781,
+   "INV10": 17,
+   "INV11": 27,
+   "INV12": 18,
+   "INV13": 25,
+   "INV14": 20,
+   "INV15": 23,
+   "INV3": 37,
+   "INV4": 36,
+   "INV7": 10,
+   "INV8": 13,
+   "INV9": 13,
+   "SHL": 359,
+   "SHR": 336,
+   "SUB": 617
+  },
+  "first_fail": "[FAIL:no_response] #89 P1 INV3 op1=0x00000007 op2=0x00000002 | exp resp=2 data=0x00000000 | got resp=00 data=0x00000000 (lat 65)",
+  "seed": 2,
+  "seconds": 69.8,
+  "description": "Invalid command never answered",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc1",
+  "test": "regress",
+  "bug": 7,
+  "checked": 2640,
+  "pass": 308,
+  "fail": 2332,
+  "spurious": 0,
+  "coverage": 73.03,
+  "cov": {
+   "cmd_x_port": [
+    16,
+    16
+   ],
+   "invalid_opcodes": [
+    1,
+    11
+   ],
+   "operand_classes": [
+    9,
+    10
+   ],
+   "shift_amounts": [
+    64,
+    64
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "sub_equal": [
+    1,
+    1
+   ],
+   "add_walking_one_op2": [
+    2,
+    32
+   ],
+   "concurrency_1to4": [
+    4,
+    4
+   ],
+   "responses": [
+    6,
+    6
+   ]
+  },
+  "fail_kinds": {
+   "no_response": 2332
+  },
+  "fail_cmds": {
+   "ADD": 810,
+   "INV10": 22,
+   "INV11": 20,
+   "INV12": 18,
+   "INV13": 23,
+   "INV14": 18,
+   "INV15": 16,
+   "INV3": 30,
+   "INV4": 30,
+   "INV7": 19,
+   "INV8": 26,
+   "INV9": 20,
+   "SHL": 354,
+   "SHR": 338,
+   "SUB": 588
+  },
+  "first_fail": "[FAIL:no_response] #89 P1 INV3 op1=0x00000007 op2=0x00000002 | exp resp=2 data=0x00000000 | got resp=00 data=0x00000000 (lat 65)",
+  "seed": 3,
+  "seconds": 73.2,
+  "description": "Invalid command never answered",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc3",
+  "test": "regress",
+  "bug": 0,
+  "checked": 3538,
+  "pass": 3538,
+  "fail": 0,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    32,
+    32
+   ],
+   "tag_x_port": [
+    16,
+    16
+   ],
+   "registers_rd_wr": [
+    32,
+    32
+   ],
+   "branch_taken_not": [
+    4,
+    4
+   ],
+   "skipped_cmd_kind": [
+    8,
+    8
+   ],
+   "outstanding_depth": [
+    16,
+    16
+   ],
+   "out_of_order_x_port": [
+    4,
+    4
+   ],
+   "hazard_cross_port": [
+    1,
+    1
+   ],
+   "hazard_back_to_back": [
+    1,
+    1
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "invalid_cmd": [
+    1,
+    1
+   ]
+  },
+  "fail_kinds": {},
+  "fail_cmds": {},
+  "first_fail": "",
+  "seed": 1,
+  "seconds": 100.7,
+  "description": "golden (no bug)",
+  "verdict": "PASS"
+ },
+ {
+  "design": "calc3",
+  "test": "regress",
+  "bug": 0,
+  "checked": 3538,
+  "pass": 3538,
+  "fail": 0,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    32,
+    32
+   ],
+   "tag_x_port": [
+    16,
+    16
+   ],
+   "registers_rd_wr": [
+    32,
+    32
+   ],
+   "branch_taken_not": [
+    4,
+    4
+   ],
+   "skipped_cmd_kind": [
+    8,
+    8
+   ],
+   "outstanding_depth": [
+    16,
+    16
+   ],
+   "out_of_order_x_port": [
+    4,
+    4
+   ],
+   "hazard_cross_port": [
+    1,
+    1
+   ],
+   "hazard_back_to_back": [
+    1,
+    1
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "invalid_cmd": [
+    1,
+    1
+   ]
+  },
+  "fail_kinds": {},
+  "fail_cmds": {},
+  "first_fail": "",
+  "seed": 2,
+  "seconds": 101.0,
+  "description": "golden (no bug)",
+  "verdict": "PASS"
+ },
+ {
+  "design": "calc3",
+  "test": "regress",
+  "bug": 0,
+  "checked": 3538,
+  "pass": 3538,
+  "fail": 0,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    32,
+    32
+   ],
+   "tag_x_port": [
+    16,
+    16
+   ],
+   "registers_rd_wr": [
+    32,
+    32
+   ],
+   "branch_taken_not": [
+    4,
+    4
+   ],
+   "skipped_cmd_kind": [
+    8,
+    8
+   ],
+   "outstanding_depth": [
+    16,
+    16
+   ],
+   "out_of_order_x_port": [
+    4,
+    4
+   ],
+   "hazard_cross_port": [
+    1,
+    1
+   ],
+   "hazard_back_to_back": [
+    1,
+    1
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "invalid_cmd": [
+    1,
+    1
+   ]
+  },
+  "fail_kinds": {},
+  "fail_cmds": {},
+  "first_fail": "",
+  "seed": 3,
+  "seconds": 97.9,
+  "description": "golden (no bug)",
+  "verdict": "PASS"
+ },
+ {
+  "design": "calc3",
+  "test": "regress",
+  "bug": 1,
+  "checked": 4227,
+  "pass": 2743,
+  "fail": 1484,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    32,
+    32
+   ],
+   "tag_x_port": [
+    16,
+    16
+   ],
+   "registers_rd_wr": [
+    32,
+    32
+   ],
+   "branch_taken_not": [
+    4,
+    4
+   ],
+   "skipped_cmd_kind": [
+    8,
+    8
+   ],
+   "outstanding_depth": [
+    16,
+    16
+   ],
+   "out_of_order_x_port": [
+    4,
+    4
+   ],
+   "hazard_cross_port": [
+    1,
+    1
+   ],
+   "hazard_back_to_back": [
+    1,
+    1
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "invalid_cmd": [
+    1,
+    1
+   ]
+  },
+  "fail_kinds": {
+   "no_response": 689,
+   "unexpected_tag": 689,
+   "wrong_data": 45,
+   "wrong_resp": 61
+  },
+  "fail_cmds": {
+   "ADD": 130,
+   "BE": 52,
+   "BZ": 36,
+   "FETCH": 179,
+   "INV14": 1,
+   "INV15": 6,
+   "INV3": 7,
+   "INV4": 8,
+   "INV7": 7,
+   "INV8": 3,
+   "NOP": 689,
+   "SHL": 57,
+   "SHR": 44,
+   "STORE": 147,
+   "SUB": 118
+  },
+  "first_fail": "[FAIL:unexpected_tag] cycle 919 #372 P3 T1 NOP d1=R0 d2=R0 r1=R0 data=0x00000000 | resp=1 for tag 1 that is not outstanding",
+  "seed": 1,
+  "seconds": 99.9,
+  "description": "Back-to-back responses reuse the previous tag",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc3",
+  "test": "regress",
+  "bug": 1,
+  "checked": 4216,
+  "pass": 2765,
+  "fail": 1451,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    32,
+    32
+   ],
+   "tag_x_port": [
+    16,
+    16
+   ],
+   "registers_rd_wr": [
+    32,
+    32
+   ],
+   "branch_taken_not": [
+    4,
+    4
+   ],
+   "skipped_cmd_kind": [
+    8,
+    8
+   ],
+   "outstanding_depth": [
+    16,
+    16
+   ],
+   "out_of_order_x_port": [
+    4,
+    4
+   ],
+   "hazard_cross_port": [
+    1,
+    1
+   ],
+   "hazard_back_to_back": [
+    1,
+    1
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "invalid_cmd": [
+    1,
+    1
+   ]
+  },
+  "fail_kinds": {
+   "no_response": 678,
+   "unexpected_tag": 678,
+   "wrong_data": 46,
+   "wrong_resp": 49
+  },
+  "fail_cmds": {
+   "ADD": 114,
+   "BE": 40,
+   "BZ": 36,
+   "FETCH": 179,
+   "INV14": 4,
+   "INV15": 2,
+   "INV3": 5,
+   "INV4": 5,
+   "INV7": 4,
+   "INV8": 4,
+   "NOP": 678,
+   "SHL": 57,
+   "SHR": 69,
+   "STORE": 148,
+   "SUB": 106
+  },
+  "first_fail": "[FAIL:unexpected_tag] cycle 919 #372 P3 T1 NOP d1=R0 d2=R0 r1=R0 data=0x00000000 | resp=1 for tag 1 that is not outstanding",
+  "seed": 2,
+  "seconds": 101.8,
+  "description": "Back-to-back responses reuse the previous tag",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc3",
+  "test": "regress",
+  "bug": 1,
+  "checked": 4234,
+  "pass": 2749,
+  "fail": 1485,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    32,
+    32
+   ],
+   "tag_x_port": [
+    16,
+    16
+   ],
+   "registers_rd_wr": [
+    32,
+    32
+   ],
+   "branch_taken_not": [
+    4,
+    4
+   ],
+   "skipped_cmd_kind": [
+    8,
+    8
+   ],
+   "outstanding_depth": [
+    16,
+    16
+   ],
+   "out_of_order_x_port": [
+    4,
+    4
+   ],
+   "hazard_cross_port": [
+    1,
+    1
+   ],
+   "hazard_back_to_back": [
+    1,
+    1
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "invalid_cmd": [
+    1,
+    1
+   ]
+  },
+  "fail_kinds": {
+   "no_response": 696,
+   "unexpected_tag": 696,
+   "wrong_data": 42,
+   "wrong_resp": 51
+  },
+  "fail_cmds": {
+   "ADD": 122,
+   "BE": 43,
+   "BZ": 40,
+   "FETCH": 195,
+   "INV14": 5,
+   "INV15": 3,
+   "INV3": 4,
+   "INV4": 4,
+   "INV7": 5,
+   "INV8": 6,
+   "NOP": 696,
+   "SHL": 52,
+   "SHR": 51,
+   "STORE": 156,
+   "SUB": 103
+  },
+  "first_fail": "[FAIL:unexpected_tag] cycle 919 #372 P3 T1 NOP d1=R0 d2=R0 r1=R0 data=0x00000000 | resp=1 for tag 1 that is not outstanding",
+  "seed": 3,
+  "seconds": 101.2,
+  "description": "Back-to-back responses reuse the previous tag",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc3",
+  "test": "regress",
+  "bug": 2,
+  "checked": 3538,
+  "pass": 3287,
+  "fail": 251,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    32,
+    32
+   ],
+   "tag_x_port": [
+    16,
+    16
+   ],
+   "registers_rd_wr": [
+    32,
+    32
+   ],
+   "branch_taken_not": [
+    4,
+    4
+   ],
+   "skipped_cmd_kind": [
+    8,
+    8
+   ],
+   "outstanding_depth": [
+    16,
+    16
+   ],
+   "out_of_order_x_port": [
+    4,
+    4
+   ],
+   "hazard_cross_port": [
+    1,
+    1
+   ],
+   "hazard_back_to_back": [
+    1,
+    1
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "invalid_cmd": [
+    1,
+    1
+   ]
+  },
+  "fail_kinds": {
+   "wrong_data": 170,
+   "wrong_resp": 81
+  },
+  "fail_cmds": {
+   "ADD": 26,
+   "BZ": 2,
+   "FETCH": 172,
+   "SHL": 1,
+   "SHR": 1,
+   "STORE": 2,
+   "SUB": 47
+  },
+  "first_fail": "[FAIL:wrong_data] cycle 911 #363 P2 T0 FETCH d1=R0 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x00005a00 | got resp=1 data=0x00000000",
+  "seed": 1,
+  "seconds": 98.5,
+  "description": "No same-cycle forwarding between ports (store->fetch)",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc3",
+  "test": "regress",
+  "bug": 2,
+  "checked": 3538,
+  "pass": 3360,
+  "fail": 178,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    32,
+    32
+   ],
+   "tag_x_port": [
+    16,
+    16
+   ],
+   "registers_rd_wr": [
+    32,
+    32
+   ],
+   "branch_taken_not": [
+    4,
+    4
+   ],
+   "skipped_cmd_kind": [
+    8,
+    8
+   ],
+   "outstanding_depth": [
+    16,
+    16
+   ],
+   "out_of_order_x_port": [
+    4,
+    4
+   ],
+   "hazard_cross_port": [
+    1,
+    1
+   ],
+   "hazard_back_to_back": [
+    1,
+    1
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "invalid_cmd": [
+    1,
+    1
+   ]
+  },
+  "fail_kinds": {
+   "wrong_data": 144,
+   "wrong_resp": 34
+  },
+  "fail_cmds": {
+   "ADD": 11,
+   "FETCH": 145,
+   "SHL": 1,
+   "SHR": 2,
+   "STORE": 2,
+   "SUB": 17
+  },
+  "first_fail": "[FAIL:wrong_data] cycle 911 #363 P2 T0 FETCH d1=R0 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x00005a00 | got resp=1 data=0x00000000",
+  "seed": 2,
+  "seconds": 100.3,
+  "description": "No same-cycle forwarding between ports (store->fetch)",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc3",
+  "test": "regress",
+  "bug": 2,
+  "checked": 3538,
+  "pass": 3353,
+  "fail": 185,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    32,
+    32
+   ],
+   "tag_x_port": [
+    16,
+    16
+   ],
+   "registers_rd_wr": [
+    32,
+    32
+   ],
+   "branch_taken_not": [
+    4,
+    4
+   ],
+   "skipped_cmd_kind": [
+    8,
+    8
+   ],
+   "outstanding_depth": [
+    16,
+    16
+   ],
+   "out_of_order_x_port": [
+    4,
+    4
+   ],
+   "hazard_cross_port": [
+    1,
+    1
+   ],
+   "hazard_back_to_back": [
+    1,
+    1
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "invalid_cmd": [
+    1,
+    1
+   ]
+  },
+  "fail_kinds": {
+   "wrong_data": 129,
+   "wrong_resp": 56
+  },
+  "fail_cmds": {
+   "ADD": 25,
+   "FETCH": 131,
+   "SHR": 2,
+   "STORE": 3,
+   "SUB": 24
+  },
+  "first_fail": "[FAIL:wrong_data] cycle 911 #363 P2 T0 FETCH d1=R0 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x00005a00 | got resp=1 data=0x00000000",
+  "seed": 3,
+  "seconds": 98.5,
+  "description": "No same-cycle forwarding between ports (store->fetch)",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc3",
+  "test": "regress",
+  "bug": 3,
+  "checked": 3538,
+  "pass": 3428,
+  "fail": 110,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    32,
+    32
+   ],
+   "tag_x_port": [
+    16,
+    16
+   ],
+   "registers_rd_wr": [
+    32,
+    32
+   ],
+   "branch_taken_not": [
+    4,
+    4
+   ],
+   "skipped_cmd_kind": [
+    8,
+    8
+   ],
+   "outstanding_depth": [
+    16,
+    16
+   ],
+   "out_of_order_x_port": [
+    4,
+    4
+   ],
+   "hazard_cross_port": [
+    1,
+    1
+   ],
+   "hazard_back_to_back": [
+    1,
+    1
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "invalid_cmd": [
+    1,
+    1
+   ]
+  },
+  "fail_kinds": {
+   "wrong_data": 83,
+   "wrong_resp": 27
+  },
+  "fail_cmds": {
+   "ADD": 11,
+   "FETCH": 84,
+   "SHR": 1,
+   "SUB": 14
+  },
+  "first_fail": "[FAIL:wrong_data] cycle 386 #156 P1 T0 FETCH d1=R9 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x0000aaaa | got resp=1 data=0x00000bad",
+  "seed": 1,
+  "seconds": 102.7,
+  "description": "Skipped command still writes its destination",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc3",
+  "test": "regress",
+  "bug": 3,
+  "checked": 3538,
+  "pass": 3438,
+  "fail": 100,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    32,
+    32
+   ],
+   "tag_x_port": [
+    16,
+    16
+   ],
+   "registers_rd_wr": [
+    32,
+    32
+   ],
+   "branch_taken_not": [
+    4,
+    4
+   ],
+   "skipped_cmd_kind": [
+    8,
+    8
+   ],
+   "outstanding_depth": [
+    16,
+    16
+   ],
+   "out_of_order_x_port": [
+    4,
+    4
+   ],
+   "hazard_cross_port": [
+    1,
+    1
+   ],
+   "hazard_back_to_back": [
+    1,
+    1
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "invalid_cmd": [
+    1,
+    1
+   ]
+  },
+  "fail_kinds": {
+   "wrong_data": 67,
+   "wrong_resp": 33
+  },
+  "fail_cmds": {
+   "ADD": 17,
+   "FETCH": 68,
+   "SHR": 1,
+   "STORE": 1,
+   "SUB": 13
+  },
+  "first_fail": "[FAIL:wrong_data] cycle 386 #156 P1 T0 FETCH d1=R9 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x0000aaaa | got resp=1 data=0x00000bad",
+  "seed": 2,
+  "seconds": 98.8,
+  "description": "Skipped command still writes its destination",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc3",
+  "test": "regress",
+  "bug": 3,
+  "checked": 3538,
+  "pass": 3400,
+  "fail": 138,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    32,
+    32
+   ],
+   "tag_x_port": [
+    16,
+    16
+   ],
+   "registers_rd_wr": [
+    32,
+    32
+   ],
+   "branch_taken_not": [
+    4,
+    4
+   ],
+   "skipped_cmd_kind": [
+    8,
+    8
+   ],
+   "outstanding_depth": [
+    16,
+    16
+   ],
+   "out_of_order_x_port": [
+    4,
+    4
+   ],
+   "hazard_cross_port": [
+    1,
+    1
+   ],
+   "hazard_back_to_back": [
+    1,
+    1
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "invalid_cmd": [
+    1,
+    1
+   ]
+  },
+  "fail_kinds": {
+   "wrong_data": 85,
+   "wrong_resp": 53
+  },
+  "fail_cmds": {
+   "ADD": 19,
+   "FETCH": 87,
+   "SHL": 2,
+   "SHR": 2,
+   "STORE": 3,
+   "SUB": 25
+  },
+  "first_fail": "[FAIL:wrong_data] cycle 386 #156 P1 T0 FETCH d1=R9 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x0000aaaa | got resp=1 data=0x00000bad",
+  "seed": 3,
+  "seconds": 99.3,
+  "description": "Skipped command still writes its destination",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc3",
+  "test": "regress",
+  "bug": 4,
+  "checked": 3538,
+  "pass": 3160,
+  "fail": 378,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    32,
+    32
+   ],
+   "tag_x_port": [
+    16,
+    16
+   ],
+   "registers_rd_wr": [
+    32,
+    32
+   ],
+   "branch_taken_not": [
+    4,
+    4
+   ],
+   "skipped_cmd_kind": [
+    8,
+    8
+   ],
+   "outstanding_depth": [
+    16,
+    16
+   ],
+   "out_of_order_x_port": [
+    4,
+    4
+   ],
+   "hazard_cross_port": [
+    1,
+    1
+   ],
+   "hazard_back_to_back": [
+    1,
+    1
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "invalid_cmd": [
+    1,
+    1
+   ]
+  },
+  "fail_kinds": {
+   "wrong_data": 254,
+   "wrong_resp": 124
+  },
+  "fail_cmds": {
+   "ADD": 54,
+   "BE": 1,
+   "BZ": 2,
+   "FETCH": 255,
+   "SHL": 3,
+   "SHR": 2,
+   "STORE": 5,
+   "SUB": 56
+  },
+  "first_fail": "[FAIL:wrong_data] cycle 308 #135 P1 T3 FETCH d1=R5 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x00000320 | got resp=1 data=0x00000064",
+  "seed": 1,
+  "seconds": 98.6,
+  "description": "Shift amount taken from d2 field instead of R[d2]",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc3",
+  "test": "regress",
+  "bug": 4,
+  "checked": 3538,
+  "pass": 3185,
+  "fail": 353,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    32,
+    32
+   ],
+   "tag_x_port": [
+    16,
+    16
+   ],
+   "registers_rd_wr": [
+    32,
+    32
+   ],
+   "branch_taken_not": [
+    4,
+    4
+   ],
+   "skipped_cmd_kind": [
+    8,
+    8
+   ],
+   "outstanding_depth": [
+    16,
+    16
+   ],
+   "out_of_order_x_port": [
+    4,
+    4
+   ],
+   "hazard_cross_port": [
+    1,
+    1
+   ],
+   "hazard_back_to_back": [
+    1,
+    1
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "invalid_cmd": [
+    1,
+    1
+   ]
+  },
+  "fail_kinds": {
+   "wrong_data": 224,
+   "wrong_resp": 129
+  },
+  "fail_cmds": {
+   "ADD": 54,
+   "BE": 3,
+   "BZ": 2,
+   "FETCH": 229,
+   "SHL": 1,
+   "SHR": 2,
+   "STORE": 3,
+   "SUB": 59
+  },
+  "first_fail": "[FAIL:wrong_data] cycle 308 #135 P1 T3 FETCH d1=R5 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x00000320 | got resp=1 data=0x00000064",
+  "seed": 2,
+  "seconds": 99.0,
+  "description": "Shift amount taken from d2 field instead of R[d2]",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc3",
+  "test": "regress",
+  "bug": 4,
+  "checked": 3538,
+  "pass": 3223,
+  "fail": 315,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    32,
+    32
+   ],
+   "tag_x_port": [
+    16,
+    16
+   ],
+   "registers_rd_wr": [
+    32,
+    32
+   ],
+   "branch_taken_not": [
+    4,
+    4
+   ],
+   "skipped_cmd_kind": [
+    8,
+    8
+   ],
+   "outstanding_depth": [
+    16,
+    16
+   ],
+   "out_of_order_x_port": [
+    4,
+    4
+   ],
+   "hazard_cross_port": [
+    1,
+    1
+   ],
+   "hazard_back_to_back": [
+    1,
+    1
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "invalid_cmd": [
+    1,
+    1
+   ]
+  },
+  "fail_kinds": {
+   "wrong_data": 222,
+   "wrong_resp": 93
+  },
+  "fail_cmds": {
+   "ADD": 34,
+   "BZ": 2,
+   "FETCH": 225,
+   "SHL": 2,
+   "SHR": 5,
+   "STORE": 3,
+   "SUB": 44
+  },
+  "first_fail": "[FAIL:wrong_data] cycle 308 #135 P1 T3 FETCH d1=R5 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x00000320 | got resp=1 data=0x00000064",
+  "seed": 3,
+  "seconds": 101.0,
+  "description": "Shift amount taken from d2 field instead of R[d2]",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc3",
+  "test": "regress",
+  "bug": 5,
+  "checked": 3538,
+  "pass": 3284,
+  "fail": 254,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    32,
+    32
+   ],
+   "tag_x_port": [
+    16,
+    16
+   ],
+   "registers_rd_wr": [
+    32,
+    32
+   ],
+   "branch_taken_not": [
+    4,
+    4
+   ],
+   "skipped_cmd_kind": [
+    8,
+    8
+   ],
+   "outstanding_depth": [
+    16,
+    16
+   ],
+   "out_of_order_x_port": [
+    4,
+    4
+   ],
+   "hazard_cross_port": [
+    1,
+    1
+   ],
+   "hazard_back_to_back": [
+    1,
+    1
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "invalid_cmd": [
+    1,
+    1
+   ]
+  },
+  "fail_kinds": {
+   "wrong_data": 110,
+   "wrong_resp": 144
+  },
+  "fail_cmds": {
+   "ADD": 36,
+   "FETCH": 111,
+   "SHL": 2,
+   "STORE": 1,
+   "SUB": 104
+  },
+  "first_fail": "[FAIL:wrong_resp] cycle 787 #313 P4 T3 SUB d1=R0 d2=R1 r1=R5 data=0x00000000 | exp resp=2 data=0x00000000 | got resp=1 data=0x00000000",
+  "seed": 1,
+  "seconds": 101.2,
+  "description": "Port-4 SUB underflow not flagged",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc3",
+  "test": "regress",
+  "bug": 5,
+  "checked": 3538,
+  "pass": 3328,
+  "fail": 210,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    32,
+    32
+   ],
+   "tag_x_port": [
+    16,
+    16
+   ],
+   "registers_rd_wr": [
+    32,
+    32
+   ],
+   "branch_taken_not": [
+    4,
+    4
+   ],
+   "skipped_cmd_kind": [
+    8,
+    8
+   ],
+   "outstanding_depth": [
+    16,
+    16
+   ],
+   "out_of_order_x_port": [
+    4,
+    4
+   ],
+   "hazard_cross_port": [
+    1,
+    1
+   ],
+   "hazard_back_to_back": [
+    1,
+    1
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "invalid_cmd": [
+    1,
+    1
+   ]
+  },
+  "fail_kinds": {
+   "wrong_data": 92,
+   "wrong_resp": 118
+  },
+  "fail_cmds": {
+   "ADD": 27,
+   "BE": 1,
+   "FETCH": 92,
+   "SHL": 1,
+   "SHR": 2,
+   "SUB": 87
+  },
+  "first_fail": "[FAIL:wrong_resp] cycle 787 #313 P4 T3 SUB d1=R0 d2=R1 r1=R5 data=0x00000000 | exp resp=2 data=0x00000000 | got resp=1 data=0x00000000",
+  "seed": 2,
+  "seconds": 99.8,
+  "description": "Port-4 SUB underflow not flagged",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc3",
+  "test": "regress",
+  "bug": 5,
+  "checked": 3538,
+  "pass": 3339,
+  "fail": 199,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    32,
+    32
+   ],
+   "tag_x_port": [
+    16,
+    16
+   ],
+   "registers_rd_wr": [
+    32,
+    32
+   ],
+   "branch_taken_not": [
+    4,
+    4
+   ],
+   "skipped_cmd_kind": [
+    8,
+    8
+   ],
+   "outstanding_depth": [
+    16,
+    16
+   ],
+   "out_of_order_x_port": [
+    4,
+    4
+   ],
+   "hazard_cross_port": [
+    1,
+    1
+   ],
+   "hazard_back_to_back": [
+    1,
+    1
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "invalid_cmd": [
+    1,
+    1
+   ]
+  },
+  "fail_kinds": {
+   "wrong_data": 94,
+   "wrong_resp": 105
+  },
+  "fail_cmds": {
+   "ADD": 25,
+   "BZ": 1,
+   "FETCH": 95,
+   "SHL": 2,
+   "SUB": 76
+  },
+  "first_fail": "[FAIL:wrong_resp] cycle 787 #313 P4 T3 SUB d1=R0 d2=R1 r1=R5 data=0x00000000 | exp resp=2 data=0x00000000 | got resp=1 data=0x00000000",
+  "seed": 3,
+  "seconds": 100.8,
+  "description": "Port-4 SUB underflow not flagged",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc3",
+  "test": "regress",
+  "bug": 6,
+  "checked": 3538,
+  "pass": 3491,
+  "fail": 47,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    32,
+    32
+   ],
+   "tag_x_port": [
+    16,
+    16
+   ],
+   "registers_rd_wr": [
+    32,
+    32
+   ],
+   "branch_taken_not": [
+    4,
+    4
+   ],
+   "skipped_cmd_kind": [
+    8,
+    8
+   ],
+   "outstanding_depth": [
+    16,
+    16
+   ],
+   "out_of_order_x_port": [
+    4,
+    4
+   ],
+   "hazard_cross_port": [
+    1,
+    1
+   ],
+   "hazard_back_to_back": [
+    1,
+    1
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "invalid_cmd": [
+    1,
+    1
+   ]
+  },
+  "fail_kinds": {
+   "wrong_data": 37,
+   "wrong_resp": 10
+  },
+  "fail_cmds": {
+   "ADD": 4,
+   "BE": 1,
+   "FETCH": 37,
+   "SHR": 1,
+   "SUB": 4
+  },
+  "first_fail": "[FAIL:wrong_data] cycle 206 #95 P3 T3 FETCH d1=R15 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x0000300f | got resp=1 data=0x0000200f",
+  "seed": 1,
+  "seconds": 100.4,
+  "description": "Port-3 writes to R15 are lost",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc3",
+  "test": "regress",
+  "bug": 6,
+  "checked": 3538,
+  "pass": 3525,
+  "fail": 13,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    32,
+    32
+   ],
+   "tag_x_port": [
+    16,
+    16
+   ],
+   "registers_rd_wr": [
+    32,
+    32
+   ],
+   "branch_taken_not": [
+    4,
+    4
+   ],
+   "skipped_cmd_kind": [
+    8,
+    8
+   ],
+   "outstanding_depth": [
+    16,
+    16
+   ],
+   "out_of_order_x_port": [
+    4,
+    4
+   ],
+   "hazard_cross_port": [
+    1,
+    1
+   ],
+   "hazard_back_to_back": [
+    1,
+    1
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "invalid_cmd": [
+    1,
+    1
+   ]
+  },
+  "fail_kinds": {
+   "wrong_data": 12,
+   "wrong_resp": 1
+  },
+  "fail_cmds": {
+   "ADD": 1,
+   "FETCH": 12
+  },
+  "first_fail": "[FAIL:wrong_data] cycle 206 #95 P3 T3 FETCH d1=R15 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x0000300f | got resp=1 data=0x0000200f",
+  "seed": 2,
+  "seconds": 101.0,
+  "description": "Port-3 writes to R15 are lost",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc3",
+  "test": "regress",
+  "bug": 6,
+  "checked": 3538,
+  "pass": 3530,
+  "fail": 8,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    32,
+    32
+   ],
+   "tag_x_port": [
+    16,
+    16
+   ],
+   "registers_rd_wr": [
+    32,
+    32
+   ],
+   "branch_taken_not": [
+    4,
+    4
+   ],
+   "skipped_cmd_kind": [
+    8,
+    8
+   ],
+   "outstanding_depth": [
+    16,
+    16
+   ],
+   "out_of_order_x_port": [
+    4,
+    4
+   ],
+   "hazard_cross_port": [
+    1,
+    1
+   ],
+   "hazard_back_to_back": [
+    1,
+    1
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "invalid_cmd": [
+    1,
+    1
+   ]
+  },
+  "fail_kinds": {
+   "wrong_data": 6,
+   "wrong_resp": 2
+  },
+  "fail_cmds": {
+   "ADD": 2,
+   "FETCH": 6
+  },
+  "first_fail": "[FAIL:wrong_data] cycle 206 #95 P3 T3 FETCH d1=R15 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x0000300f | got resp=1 data=0x0000200f",
+  "seed": 3,
+  "seconds": 99.8,
+  "description": "Port-3 writes to R15 are lost",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc3",
+  "test": "regress",
+  "bug": 7,
+  "checked": 3538,
+  "pass": 3499,
+  "fail": 39,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    32,
+    32
+   ],
+   "tag_x_port": [
+    16,
+    16
+   ],
+   "registers_rd_wr": [
+    32,
+    32
+   ],
+   "branch_taken_not": [
+    4,
+    4
+   ],
+   "skipped_cmd_kind": [
+    8,
+    8
+   ],
+   "outstanding_depth": [
+    16,
+    16
+   ],
+   "out_of_order_x_port": [
+    4,
+    4
+   ],
+   "hazard_cross_port": [
+    1,
+    1
+   ],
+   "hazard_back_to_back": [
+    1,
+    1
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "invalid_cmd": [
+    1,
+    1
+   ]
+  },
+  "fail_kinds": {
+   "wrong_data": 25,
+   "wrong_resp": 14
+  },
+  "fail_cmds": {
+   "ADD": 3,
+   "BZ": 2,
+   "FETCH": 26,
+   "STORE": 5,
+   "SUB": 3
+  },
+  "first_fail": "[FAIL:wrong_resp] cycle 409 #166 P1 T2 STORE d1=R0 d2=R0 r1=R12 data=0x0000600d | exp resp=1 data=0x00000000 | got resp=3 data=0x00000000",
+  "seed": 1,
+  "seconds": 98.1,
+  "description": "Branch-if-equal compares only the low 16 bits",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc3",
+  "test": "regress",
+  "bug": 7,
+  "checked": 3538,
+  "pass": 3502,
+  "fail": 36,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    32,
+    32
+   ],
+   "tag_x_port": [
+    16,
+    16
+   ],
+   "registers_rd_wr": [
+    32,
+    32
+   ],
+   "branch_taken_not": [
+    4,
+    4
+   ],
+   "skipped_cmd_kind": [
+    8,
+    8
+   ],
+   "outstanding_depth": [
+    16,
+    16
+   ],
+   "out_of_order_x_port": [
+    4,
+    4
+   ],
+   "hazard_cross_port": [
+    1,
+    1
+   ],
+   "hazard_back_to_back": [
+    1,
+    1
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "invalid_cmd": [
+    1,
+    1
+   ]
+  },
+  "fail_kinds": {
+   "wrong_data": 18,
+   "wrong_resp": 18
+  },
+  "fail_cmds": {
+   "ADD": 6,
+   "BE": 1,
+   "FETCH": 19,
+   "STORE": 6,
+   "SUB": 4
+  },
+  "first_fail": "[FAIL:wrong_resp] cycle 409 #166 P1 T2 STORE d1=R0 d2=R0 r1=R12 data=0x0000600d | exp resp=1 data=0x00000000 | got resp=3 data=0x00000000",
+  "seed": 2,
+  "seconds": 95.9,
+  "description": "Branch-if-equal compares only the low 16 bits",
+  "verdict": "CAUGHT"
+ },
+ {
+  "design": "calc3",
+  "test": "regress",
+  "bug": 7,
+  "checked": 3538,
+  "pass": 3526,
+  "fail": 12,
+  "spurious": 0,
+  "coverage": 100.0,
+  "cov": {
+   "cmd_x_port": [
+    32,
+    32
+   ],
+   "tag_x_port": [
+    16,
+    16
+   ],
+   "registers_rd_wr": [
+    32,
+    32
+   ],
+   "branch_taken_not": [
+    4,
+    4
+   ],
+   "skipped_cmd_kind": [
+    8,
+    8
+   ],
+   "outstanding_depth": [
+    16,
+    16
+   ],
+   "out_of_order_x_port": [
+    4,
+    4
+   ],
+   "hazard_cross_port": [
+    1,
+    1
+   ],
+   "hazard_back_to_back": [
+    1,
+    1
+   ],
+   "ovf_unf_x_port": [
+    8,
+    8
+   ],
+   "invalid_cmd": [
+    1,
+    1
+   ]
+  },
+  "fail_kinds": {
+   "wrong_data": 4,
+   "wrong_resp": 8
+  },
+  "fail_cmds": {
+   "ADD": 1,
+   "BZ": 1,
+   "FETCH": 5,
+   "SHR": 1,
+   "STORE": 4
+  },
+  "first_fail": "[FAIL:wrong_resp] cycle 409 #166 P1 T2 STORE d1=R0 d2=R0 r1=R12 data=0x0000600d | exp resp=1 data=0x00000000 | got resp=3 data=0x00000000",
+  "seed": 3,
+  "seconds": 94.4,
+  "description": "Branch-if-equal compares only the low 16 bits",
+  "verdict": "CAUGHT"
+ }
+]

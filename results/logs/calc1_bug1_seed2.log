@@ -1,0 +1,41 @@
+==============================================================
+ Calc1 verification  test=regress  BUG=1
+==============================================================
+[TEST] smoke: test-plan TC1..TC4 on all ports
+[TEST] directed: boundaries, shifts 0..31, invalid opcodes, walking ones
+[FAIL:wrong_data] #21 P1 SUB op1=0x000004d2 op2=0x000004d2 | exp resp=1 data=0x00000000 | got resp=01 data=0x00000010 (lat 7)
+[FAIL:wrong_data] #104 P1 ADD op1=0x00000100 op2=0x00000010 | exp resp=1 data=0x00000110 | got resp=01 data=0x00000100 (lat 7)
+[TEST] priority: simultaneous requests to the same unit
+[TEST] random: 2000 constrained-random transactions
+[FAIL:wrong_data] #677 P1 ADD op1=0x5bdf2806 op2=0x922a789c | exp resp=1 data=0xee09a0a2 | got resp=01 data=0xee09a092 (lat 7)
+[FAIL:wrong_data] #682 P1 ADD op1=0x58675737 op2=0x3ca08f17 | exp resp=1 data=0x9507e64e | got resp=01 data=0x9507e63e (lat 7)
+[FAIL:wrong_data] #715 P1 ADD op1=0xfdf0bdb5 op2=0x00000014 | exp resp=1 data=0xfdf0bdc9 | got resp=01 data=0xfdf0bdb9 (lat 7)
+[FAIL:wrong_data] #727 P1 SUB op1=0xb786c001 op2=0x2e26d952 | exp resp=1 data=0x895fe6af | got resp=01 data=0x895fe6bf (lat 7)
+[FAIL:wrong_data] #734 P1 ADD op1=0xe898fe4d op2=0x00000013 | exp resp=1 data=0xe898fe60 | got resp=01 data=0xe898fe50 (lat 7)
+[FAIL:wrong_data] #757 P1 SUB op1=0x7962a00c op2=0x00000018 | exp resp=1 data=0x79629ff4 | got resp=01 data=0x7962a004 (lat 7)
+[FAIL:wrong_data] #776 P1 ADD op1=0x30df57f3 op2=0x7bef221a | exp resp=1 data=0xacce7a0d | got resp=01 data=0xacce79fd (lat 7)
+[FAIL:wrong_data] #780 P1 ADD op1=0x55bd78e9 op2=0x00000018 | exp resp=1 data=0x55bd7901 | got resp=01 data=0x55bd78f1 (lat 7)
+[FAIL:wrong_data] #792 P1 SUB op1=0xc6188035 op2=0x3cb4035d | exp resp=1 data=0x89647cd8 | got resp=01 data=0x89647ce8 (lat 7)
+[FAIL:wrong_data] #859 P1 ADD op1=0xe25b6cb4 op2=0x00000014 | exp resp=1 data=0xe25b6cc8 | got resp=01 data=0xe25b6cb8 (lat 7)
+[FAIL:wrong_data] #886 P1 ADD op1=0x00000003 op2=0x00000018 | exp resp=1 data=0x0000001b | got resp=01 data=0x0000000b (lat 7)
+[FAIL:wrong_data] #1114 P1 SUB op1=0x5470afad op2=0x00000010 | exp resp=1 data=0x5470af9d | got resp=01 data=0x5470afad (lat 7)
+[FAIL:wrong_data] #1130 P1 SUB op1=0x85865513 op2=0x0000001b | exp resp=1 data=0x858654f8 | got resp=01 data=0x85865508 (lat 7)
+[FAIL:wrong_data] #1178 P1 SUB op1=0xffffffff op2=0xf58bbe51 | exp resp=1 data=0x0a7441ae | got resp=01 data=0x0a7441be (lat 7)
+[FAIL:wrong_data] #1226 P1 ADD op1=0xe7dd74b5 op2=0x05083f53 | exp resp=1 data=0xece5b408 | got resp=01 data=0xece5b3f8 (lat 7)
+[FAIL:wrong_data] #1257 P1 SUB op1=0x91c9edde op2=0x0000001c | exp resp=1 data=0x91c9edc2 | got resp=01 data=0x91c9edd2 (lat 7)
+[FAIL:wrong_data] #1309 P1 ADD op1=0x3d5d4216 op2=0x430c329a | exp resp=1 data=0x806974b0 | got resp=01 data=0x806974a0 (lat 7)
+[FAIL:wrong_data] #1355 P1 SUB op1=0xffffffff op2=0x0000001a | exp resp=1 data=0xffffffe5 | got resp=01 data=0xfffffff5 (lat 7)
+[FAIL:wrong_data] #1383 P1 ADD op1=0x1502f3fe op2=0x492a8a90 | exp resp=1 data=0x5e2d7e8e | got resp=01 data=0x5e2d7e7e (lat 7)
+[FAIL:wrong_data] #1402 P1 ADD op1=0x90589dd5 op2=0x0000001d | exp resp=1 data=0x90589df2 | got resp=01 data=0x90589de2 (lat 7)
+[FAIL:wrong_data] #1405 P1 ADD op1=0x3ad78113 op2=0x4c079d9a | exp resp=1 data=0x86df1ead | got resp=01 data=0x86df1e9d (lat 7)
+[FAIL:wrong_data] #1432 P1 SUB op1=0x509b1d60 op2=0x4a0cc498 | exp resp=1 data=0x068e58c8 | got resp=01 data=0x068e58d8 (lat 7)
+[FAIL:wrong_data] #1534 P1 ADD op1=0x167f637b op2=0x2e965f13 | exp resp=1 data=0x4515c28e | got resp=01 data=0x4515c27e (lat 7)
+[FAIL] ... further failures counted but not printed
+--------------------------------------------------------------
+ checked=2640 pass=2569 fail=71 spurious=0  coverage=100.0%
+ RESULT: FAIL
+@@SUMMARY {"design":"calc1","test":"regress","bug":1,"checked":2640,"pass":2569,"fail":71,"spurious":0,"coverage":100.00,"cov":{ "cmd_x_port":[16,16],"invalid_opcodes":[11,11],"operand_classes":[10,10],"shift_amounts":[64,64],"ovf_unf_x_port":[8,8],"sub_equal":[1,1],"add_walking_one_op2":[32,32],"concurrency_1to4":[4,4],"responses":[6,6]},"fail_kinds":{"wrong_data":71},"fail_cmds":{"ADD":40,"SUB":31},"first_fail":"[FAIL:wrong_data] #21 P1 SUB op1=0x000004d2 op2=0x000004d2 | exp resp=1 data=0x00000000 | got resp=01 data=0x00000010 (lat 7)"}
+- tb/calc1/calc1_tb_top.sv:75: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05
+- Verilator: $finish at 513us; walltime 76.598 s; speed 6.693 us/s
+- Verilator: cpu 2.485 s on 1 threads; allocated 5 MB

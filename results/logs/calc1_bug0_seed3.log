@@ -1,0 +1,15 @@
+==============================================================
+ Calc1 verification  test=regress  BUG=0
+==============================================================
+[TEST] smoke: test-plan TC1..TC4 on all ports
+[TEST] directed: boundaries, shifts 0..31, invalid opcodes, walking ones
+[TEST] priority: simultaneous requests to the same unit
+[TEST] random: 2000 constrained-random transactions
+--------------------------------------------------------------
+ checked=2640 pass=2640 fail=0 spurious=0  coverage=100.0%
+ RESULT: PASS
+@@SUMMARY {"design":"calc1","test":"regress","bug":0,"checked":2640,"pass":2640,"fail":0,"spurious":0,"coverage":100.00,"cov":{ "cmd_x_port":[16,16],"invalid_opcodes":[11,11],"operand_classes":[10,10],"shift_amounts":[64,64],"ovf_unf_x_port":[8,8],"sub_equal":[1,1],"add_walking_one_op2":[32,32],"concurrency_1to4":[4,4],"responses":[6,6]},"fail_kinds":{},"fail_cmds":{},"first_fail":""}
+- tb/calc1/calc1_tb_top.sv:75: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05
+- Verilator: $finish at 507us; walltime 70.579 s; speed 7.185 us/s
+- Verilator: cpu 2.098 s on 1 threads; allocated 5 MB

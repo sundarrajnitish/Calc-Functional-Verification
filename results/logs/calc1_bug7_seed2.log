@@ -1,0 +1,45 @@
+==============================================================
+ Calc1 verification  test=regress  BUG=7
+==============================================================
+[TEST] smoke: test-plan TC1..TC4 on all ports
+[TEST] directed: boundaries, shifts 0..31, invalid opcodes, walking ones
+[HANG] port 1 stopped responding -- no further commands sent to it
+[FAIL:no_response] #89 P1 INV3 op1=0x00000007 op2=0x00000002 | exp resp=2 data=0x00000000 | got resp=00 data=0x00000000 (lat 65)
+[FAIL:no_response] #90 P1 INV4 op1=0x00000007 op2=0x00000002 | exp resp=2 data=0x00000000 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #91 P1 INV7 op1=0x00000007 op2=0x00000002 | exp resp=2 data=0x00000000 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #92 P1 INV8 op1=0x00000007 op2=0x00000002 | exp resp=2 data=0x00000000 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #93 P1 INV9 op1=0x00000007 op2=0x00000002 | exp resp=2 data=0x00000000 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #94 P1 INV10 op1=0x00000007 op2=0x00000002 | exp resp=2 data=0x00000000 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #95 P1 INV11 op1=0x00000007 op2=0x00000002 | exp resp=2 data=0x00000000 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #96 P1 INV12 op1=0x00000007 op2=0x00000002 | exp resp=2 data=0x00000000 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #97 P1 INV13 op1=0x00000007 op2=0x00000002 | exp resp=2 data=0x00000000 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #98 P1 INV14 op1=0x00000007 op2=0x00000002 | exp resp=2 data=0x00000000 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #99 P1 INV15 op1=0x00000007 op2=0x00000002 | exp resp=2 data=0x00000000 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #100 P1 ADD op1=0x00000100 op2=0x00000001 | exp resp=1 data=0x00000101 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #101 P1 ADD op1=0x00000100 op2=0x00000002 | exp resp=1 data=0x00000102 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #102 P1 ADD op1=0x00000100 op2=0x00000004 | exp resp=1 data=0x00000104 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #103 P1 ADD op1=0x00000100 op2=0x00000008 | exp resp=1 data=0x00000108 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #104 P1 ADD op1=0x00000100 op2=0x00000010 | exp resp=1 data=0x00000110 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #105 P1 ADD op1=0x00000100 op2=0x00000020 | exp resp=1 data=0x00000120 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #106 P1 ADD op1=0x00000100 op2=0x00000040 | exp resp=1 data=0x00000140 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #107 P1 ADD op1=0x00000100 op2=0x00000080 | exp resp=1 data=0x00000180 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #108 P1 ADD op1=0x00000100 op2=0x00000100 | exp resp=1 data=0x00000200 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #109 P1 ADD op1=0x00000100 op2=0x00000200 | exp resp=1 data=0x00000300 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #110 P1 ADD op1=0x00000100 op2=0x00000400 | exp resp=1 data=0x00000500 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #111 P1 ADD op1=0x00000100 op2=0x00000800 | exp resp=1 data=0x00000900 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #112 P1 ADD op1=0x00000100 op2=0x00001000 | exp resp=1 data=0x00001100 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #113 P1 ADD op1=0x00000100 op2=0x00002000 | exp resp=1 data=0x00002100 | got resp=00 data=0x00000000 (lat 0)
+[FAIL] ... further failures counted but not printed
+[HANG] port 2 stopped responding -- no further commands sent to it
+[HANG] port 3 stopped responding -- no further commands sent to it
+[HANG] port 4 stopped responding -- no further commands sent to it
+[TEST] priority: simultaneous requests to the same unit
+[TEST] random: 2000 constrained-random transactions
+--------------------------------------------------------------
+ checked=2640 pass=308 fail=2332 spurious=0  coverage=73.0%
+ RESULT: FAIL
+@@SUMMARY {"design":"calc1","test":"regress","bug":7,"checked":2640,"pass":308,"fail":2332,"spurious":0,"coverage":73.03,"cov":{ "cmd_x_port":[16,16],"invalid_opcodes":[1,11],"operand_classes":[9,10],"shift_amounts":[64,64],"ovf_unf_x_port":[8,8],"sub_equal":[1,1],"add_walking_one_op2":[2,32],"concurrency_1to4":[4,4],"responses":[6,6]},"fail_kinds":{"no_response":2332},"fail_cmds":{"ADD":781,"INV10":17,"INV11":27,"INV12":18,"INV13":25,"INV14":20,"INV15":23,"INV3":37,"INV4":36,"INV7":10,"INV8":13,"INV9":13,"SHL":359,"SHR":336,"SUB":617},"first_fail":"[FAIL:no_response] #89 P1 INV3 op1=0x00000007 op2=0x00000002 | exp resp=2 data=0x00000000 | got resp=00 data=0x00000000 (lat 65)"}
+- tb/calc1/calc1_tb_top.sv:75: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05
+- Verilator: $finish at 43us; walltime 69.778 s; speed 620.177 ns/s
+- Verilator: cpu 1.939 s on 1 threads; allocated 5 MB

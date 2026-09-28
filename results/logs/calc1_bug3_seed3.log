@@ -1,0 +1,30 @@
+==============================================================
+ Calc1 verification  test=regress  BUG=3
+==============================================================
+[TEST] smoke: test-plan TC1..TC4 on all ports
+[TEST] directed: boundaries, shifts 0..31, invalid opcodes, walking ones
+[FAIL:wrong_data] #24 P1 SHL op1=0xa5a50f0f op2=0x00000000 | exp resp=1 data=0xa5a50f0f | got resp=01 data=0x00000000 (lat 7)
+[FAIL:wrong_data] #140 P2 SHL op1=0xa5a50f0f op2=0x00000000 | exp resp=1 data=0xa5a50f0f | got resp=01 data=0x00000000 (lat 7)
+[FAIL:wrong_data] #256 P3 SHL op1=0xa5a50f0f op2=0x00000000 | exp resp=1 data=0xa5a50f0f | got resp=01 data=0x00000000 (lat 7)
+[FAIL:wrong_data] #372 P4 SHL op1=0xa5a50f0f op2=0x00000000 | exp resp=1 data=0xa5a50f0f | got resp=01 data=0x00000000 (lat 7)
+[TEST] priority: simultaneous requests to the same unit
+[TEST] random: 2000 constrained-random transactions
+[FAIL:wrong_data] #754 P2 SHL op1=0x1a408e18 op2=0x10f94bc0 | exp resp=1 data=0x1a408e18 | got resp=01 data=0x00000000 (lat 7)
+[FAIL:wrong_data] #1011 P4 SHL op1=0x06b8aa05 op2=0x1bec3fe0 | exp resp=1 data=0x06b8aa05 | got resp=01 data=0x00000000 (lat 7)
+[FAIL:wrong_data] #1482 P1 SHL op1=0xd65e467e op2=0x00000000 | exp resp=1 data=0xd65e467e | got resp=01 data=0x00000000 (lat 7)
+[FAIL:wrong_data] #1510 P4 SHL op1=0x574f3319 op2=0xab82e0c0 | exp resp=1 data=0x574f3319 | got resp=01 data=0x00000000 (lat 7)
+[FAIL:wrong_data] #1595 P2 SHL op1=0x1cae9ec5 op2=0x00000000 | exp resp=1 data=0x1cae9ec5 | got resp=01 data=0x00000000 (lat 7)
+[FAIL:wrong_data] #1605 P2 SHL op1=0xf2085ce5 op2=0x00000000 | exp resp=1 data=0xf2085ce5 | got resp=01 data=0x00000000 (lat 7)
+[FAIL:wrong_data] #1856 P3 SHL op1=0xd06c4b97 op2=0x00000000 | exp resp=1 data=0xd06c4b97 | got resp=01 data=0x00000000 (lat 7)
+[FAIL:wrong_data] #1888 P1 SHL op1=0xc7a10c3e op2=0x00000000 | exp resp=1 data=0xc7a10c3e | got resp=01 data=0x00000000 (lat 7)
+[FAIL:wrong_data] #1908 P4 SHL op1=0x4ee1503d op2=0x00000000 | exp resp=1 data=0x4ee1503d | got resp=01 data=0x00000000 (lat 7)
+[FAIL:wrong_data] #2121 P4 SHL op1=0x88d73777 op2=0xdb452080 | exp resp=1 data=0x88d73777 | got resp=01 data=0x00000000 (lat 8)
+[FAIL:wrong_data] #2193 P4 SHL op1=0x0000000c op2=0x00000000 | exp resp=1 data=0x0000000c | got resp=01 data=0x00000000 (lat 7)
+--------------------------------------------------------------
+ checked=2640 pass=2625 fail=15 spurious=0  coverage=100.0%
+ RESULT: FAIL
+@@SUMMARY {"design":"calc1","test":"regress","bug":3,"checked":2640,"pass":2625,"fail":15,"spurious":0,"coverage":100.00,"cov":{ "cmd_x_port":[16,16],"invalid_opcodes":[11,11],"operand_classes":[10,10],"shift_amounts":[64,64],"ovf_unf_x_port":[8,8],"sub_equal":[1,1],"add_walking_one_op2":[32,32],"concurrency_1to4":[4,4],"responses":[6,6]},"fail_kinds":{"wrong_data":15},"fail_cmds":{"SHL":15},"first_fail":"[FAIL:wrong_data] #24 P1 SHL op1=0xa5a50f0f op2=0x00000000 | exp resp=1 data=0xa5a50f0f | got resp=01 data=0x00000000 (lat 7)"}
+- tb/calc1/calc1_tb_top.sv:75: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05
+- Verilator: $finish at 507us; walltime 68.705 s; speed 7.381 us/s
+- Verilator: cpu 2.074 s on 1 threads; allocated 5 MB

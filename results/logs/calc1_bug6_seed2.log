@@ -1,0 +1,42 @@
+==============================================================
+ Calc1 verification  test=regress  BUG=6
+==============================================================
+[TEST] smoke: test-plan TC1..TC4 on all ports
+[HANG] port 4 stopped responding -- no further commands sent to it
+[FAIL:no_response] #12 P4 ADD op1=0x00000005 op2=0x00000003 | exp resp=1 data=0x00000008 | got resp=00 data=0x00000000 (lat 65)
+[FAIL:no_response] #13 P4 SUB op1=0x0000000a op2=0x00000003 | exp resp=1 data=0x00000007 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #14 P4 SHL op1=0x00000008 op2=0x00000002 | exp resp=1 data=0x00000020 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #15 P4 SHR op1=0x00000010 op2=0x00000002 | exp resp=1 data=0x00000004 | got resp=00 data=0x00000000 (lat 0)
+[TEST] directed: boundaries, shifts 0..31, invalid opcodes, walking ones
+[FAIL:no_response] #364 P4 ADD op1=0xffffffff op2=0x00000001 | exp resp=2 data=0x00000000 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #365 P4 ADD op1=0x80000000 op2=0x80000000 | exp resp=2 data=0x00000000 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #366 P4 ADD op1=0xfffffffe op2=0x00000001 | exp resp=1 data=0xffffffff | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #367 P4 ADD op1=0x00000000 op2=0x00000000 | exp resp=1 data=0x00000000 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #368 P4 SUB op1=0x00000000 op2=0x00000001 | exp resp=2 data=0x00000000 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #369 P4 SUB op1=0x000004d2 op2=0x000004d2 | exp resp=1 data=0x00000000 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #370 P4 SUB op1=0xffffffff op2=0x00000000 | exp resp=1 data=0xffffffff | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #371 P4 SUB op1=0x00000009 op2=0x00000004 | exp resp=1 data=0x00000005 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #372 P4 SHL op1=0xa5a50f0f op2=0x00000000 | exp resp=1 data=0xa5a50f0f | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #373 P4 SHR op1=0xf0f05a5a op2=0x00000000 | exp resp=1 data=0xf0f05a5a | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #374 P4 SHL op1=0xa5a50f0f op2=0x00000001 | exp resp=1 data=0x4b4a1e1e | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #375 P4 SHR op1=0xf0f05a5a op2=0x00000001 | exp resp=1 data=0x78782d2d | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #376 P4 SHL op1=0xa5a50f0f op2=0x00000002 | exp resp=1 data=0x96943c3c | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #377 P4 SHR op1=0xf0f05a5a op2=0x00000002 | exp resp=1 data=0x3c3c1696 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #378 P4 SHL op1=0xa5a50f0f op2=0x00000003 | exp resp=1 data=0x2d287878 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #379 P4 SHR op1=0xf0f05a5a op2=0x00000003 | exp resp=1 data=0x1e1e0b4b | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #380 P4 SHL op1=0xa5a50f0f op2=0x00000004 | exp resp=1 data=0x5a50f0f0 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #381 P4 SHR op1=0xf0f05a5a op2=0x00000004 | exp resp=1 data=0x0f0f05a5 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #382 P4 SHL op1=0xa5a50f0f op2=0x00000005 | exp resp=1 data=0xb4a1e1e0 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #383 P4 SHR op1=0xf0f05a5a op2=0x00000005 | exp resp=1 data=0x078782d2 | got resp=00 data=0x00000000 (lat 0)
+[FAIL:no_response] #384 P4 SHL op1=0xa5a50f0f op2=0x00000006 | exp resp=1 data=0x6943c3c0 | got resp=00 data=0x00000000 (lat 0)
+[FAIL] ... further failures counted but not printed
+[TEST] priority: simultaneous requests to the same unit
+[TEST] random: 2000 constrained-random transactions
+--------------------------------------------------------------
+ checked=2640 pass=1483 fail=1157 spurious=0  coverage=96.7%
+ RESULT: FAIL
+@@SUMMARY {"design":"calc1","test":"regress","bug":6,"checked":2640,"pass":1483,"fail":1157,"spurious":0,"coverage":96.71,"cov":{ "cmd_x_port":[13,16],"invalid_opcodes":[11,11],"operand_classes":[10,10],"shift_amounts":[64,64],"ovf_unf_x_port":[6,8],"sub_equal":[1,1],"add_walking_one_op2":[32,32],"concurrency_1to4":[4,4],"responses":[6,6]},"fail_kinds":{"no_response":1157},"fail_cmds":{"ADD":344,"INV10":8,"INV11":12,"INV12":8,"INV13":16,"INV14":10,"INV15":11,"INV3":17,"INV4":14,"INV7":4,"INV8":6,"INV9":5,"SHL":219,"SHR":191,"SUB":292},"first_fail":"[FAIL:no_response] #12 P4 ADD op1=0x00000005 op2=0x00000003 | exp resp=1 data=0x00000008 | got resp=00 data=0x00000000 (lat 65)"}
+- tb/calc1/calc1_tb_top.sv:75: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05
+- Verilator: $finish at 293us; walltime 68.885 s; speed 4.254 us/s
+- Verilator: cpu 2.086 s on 1 threads; allocated 5 MB

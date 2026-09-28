@@ -1,0 +1,23 @@
+==============================================================
+ Calc3 verification  test=regress  BUG=6
+==============================================================
+[TEST] smoke: store/fetch all registers from all ports, basic ALU ops
+[FAIL:wrong_data] cycle 206 #95 P3 T3 FETCH d1=R15 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x0000300f | got resp=1 data=0x0000200f
+[TEST] directed: overflow, underflow, shifts, branches, skip side-effects, invalid
+[FAIL:wrong_data] cycle 751 #302 P3 T0 FETCH d1=R15 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0xf00d0003 | got resp=1 data=0xf00d0002
+[TEST] hazards: cross-port same-cycle RAW, back-to-back RAW, out-of-order tags
+[FAIL:wrong_data] cycle 1204 #517 P3 T3 FETCH d1=R15 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x0000c30f | got resp=1 data=0x00005a0f
+[FAIL:wrong_data] cycle 1204 #519 P4 T1 FETCH d1=R15 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x0000c30f | got resp=1 data=0x00005a0f
+[FAIL:wrong_data] cycle 1207 #521 P4 T2 FETCH d1=R0 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x61878000 | got resp=1 data=0x2d078000
+[TEST] random: 3000 constrained-random transactions
+[FAIL:wrong_data] cycle 1234 #547 P4 T1 FETCH d1=R0 d2=R8 r1=R6 data=0x00000000 | exp resp=1 data=0x00061878 | got resp=1 data=0x0002d078
+[FAIL:wrong_resp] cycle 1242 #557 P1 T3 ADD d1=R0 d2=R0 r1=R4 data=0x50a6889e | exp resp=1 data=0x00000000 | got resp=3 data=0x00000000
+[FAIL:wrong_resp] cycle 1437 #841 P1 T2 ADD d1=R2 d2=R2 r1=R6 data=0x0605ecac | exp resp=1 data=0x00000000 | got resp=3 data=0x00000000
+--------------------------------------------------------------
+ checked=3538 pass=3530 fail=8  coverage=100.0%
+ RESULT: FAIL
+@@SUMMARY {"design":"calc3","test":"regress","bug":6,"checked":3538,"pass":3530,"fail":8,"spurious":0,"coverage":100.00,"cov":{ "cmd_x_port":[32,32],"tag_x_port":[16,16],"registers_rd_wr":[32,32],"branch_taken_not":[4,4],"skipped_cmd_kind":[8,8],"outstanding_depth":[16,16],"out_of_order_x_port":[4,4],"hazard_cross_port":[1,1],"hazard_back_to_back":[1,1],"ovf_unf_x_port":[8,8],"invalid_cmd":[1,1]},"fail_kinds":{"wrong_data":6,"wrong_resp":2},"fail_cmds":{"ADD":2,"FETCH":6},"first_fail":"[FAIL:wrong_data] cycle 206 #95 P3 T3 FETCH d1=R15 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x0000300f | got resp=1 data=0x0000200f"}
+- tb/calc3/calc3_tb_top.sv:69: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05
+- Verilator: $finish at 170us; walltime 99.739 s; speed 1.701 us/s
+- Verilator: cpu 2.297 s on 1 threads; allocated 5 MB

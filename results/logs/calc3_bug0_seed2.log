@@ -1,0 +1,15 @@
+==============================================================
+ Calc3 verification  test=regress  BUG=0
+==============================================================
+[TEST] smoke: store/fetch all registers from all ports, basic ALU ops
+[TEST] directed: overflow, underflow, shifts, branches, skip side-effects, invalid
+[TEST] hazards: cross-port same-cycle RAW, back-to-back RAW, out-of-order tags
+[TEST] random: 3000 constrained-random transactions
+--------------------------------------------------------------
+ checked=3538 pass=3538 fail=0  coverage=100.0%
+ RESULT: PASS
+@@SUMMARY {"design":"calc3","test":"regress","bug":0,"checked":3538,"pass":3538,"fail":0,"spurious":0,"coverage":100.00,"cov":{ "cmd_x_port":[32,32],"tag_x_port":[16,16],"registers_rd_wr":[32,32],"branch_taken_not":[4,4],"skipped_cmd_kind":[8,8],"outstanding_depth":[16,16],"out_of_order_x_port":[4,4],"hazard_cross_port":[1,1],"hazard_back_to_back":[1,1],"ovf_unf_x_port":[8,8],"invalid_cmd":[1,1]},"fail_kinds":{},"fail_cmds":{},"first_fail":""}
+- tb/calc3/calc3_tb_top.sv:69: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05
+- Verilator: $finish at 168us; walltime 100.998 s; speed 1.667 us/s
+- Verilator: cpu 2.381 s on 1 threads; allocated 5 MB

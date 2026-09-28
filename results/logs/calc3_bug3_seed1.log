@@ -1,0 +1,41 @@
+==============================================================
+ Calc3 verification  test=regress  BUG=3
+==============================================================
+[TEST] smoke: store/fetch all registers from all ports, basic ALU ops
+[TEST] directed: overflow, underflow, shifts, branches, skip side-effects, invalid
+[FAIL:wrong_data] cycle 386 #156 P1 T0 FETCH d1=R9 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x0000aaaa | got resp=1 data=0x00000bad
+[FAIL:wrong_data] cycle 401 #162 P1 T2 FETCH d1=R9 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x0000c0de | got resp=1 data=0x00000002
+[FAIL:wrong_data] cycle 453 #188 P1 T0 FETCH d1=R14 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x0000400e | got resp=1 data=0x00007777
+[FAIL:wrong_data] cycle 533 #212 P2 T2 FETCH d1=R9 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x0000aaaa | got resp=1 data=0x00000bad
+[FAIL:wrong_data] cycle 548 #218 P2 T0 FETCH d1=R9 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x0000c0de | got resp=1 data=0x00000002
+[FAIL:wrong_data] cycle 600 #244 P2 T2 FETCH d1=R14 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x0000400e | got resp=1 data=0x00007777
+[FAIL:wrong_data] cycle 680 #268 P3 T2 FETCH d1=R9 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x0000aaaa | got resp=1 data=0x00000bad
+[FAIL:wrong_data] cycle 695 #274 P3 T0 FETCH d1=R9 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x0000c0de | got resp=1 data=0x00000002
+[FAIL:wrong_data] cycle 747 #300 P3 T2 FETCH d1=R14 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x0000400e | got resp=1 data=0x00007777
+[FAIL:wrong_data] cycle 827 #324 P4 T2 FETCH d1=R9 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x0000aaaa | got resp=1 data=0x00000bad
+[FAIL:wrong_data] cycle 842 #330 P4 T0 FETCH d1=R9 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x0000c0de | got resp=1 data=0x00000002
+[FAIL:wrong_data] cycle 894 #356 P4 T2 FETCH d1=R14 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x0000400e | got resp=1 data=0x00007777
+[TEST] hazards: cross-port same-cycle RAW, back-to-back RAW, out-of-order tags
+[TEST] random: 3000 constrained-random transactions
+[FAIL:wrong_data] cycle 1257 #589 P1 T2 FETCH d1=R1 d2=R0 r1=R3 data=0x00000000 | exp resp=1 data=0xeef2d48f | got resp=1 data=0xeef2d498
+[FAIL:wrong_data] cycle 1257 #569 P4 T3 FETCH d1=R1 d2=R3 r1=R1 data=0x2cdbcfc7 | exp resp=1 data=0xeef2d48f | got resp=1 data=0xeef2d498
+[FAIL:wrong_data] cycle 1441 #755 P4 T3 FETCH d1=R2 d2=R1 r1=R4 data=0x40452388 | exp resp=1 data=0xffffffff | got resp=1 data=0xfffffffc
+[FAIL:wrong_data] cycle 1449 #798 P1 T3 FETCH d1=R2 d2=R3 r1=R2 data=0x80000000 | exp resp=1 data=0xffffffff | got resp=1 data=0xfffffffc
+[FAIL:wrong_data] cycle 1456 #768 P4 T0 FETCH d1=R6 d2=R7 r1=R4 data=0x00000006 | exp resp=1 data=0x3eec1293 | got resp=1 data=0x00180000
+[FAIL:wrong_resp] cycle 1458 #808 P1 T3 SHR d1=R3 d2=R0 r1=R13 data=0x46533832 | exp resp=3 data=0x00000000 | got resp=1 data=0x00000000
+[FAIL:wrong_data] cycle 1500 #803 P4 T3 FETCH d1=R13 d2=R2 r1=R3 data=0x00000014 | exp resp=1 data=0x0000c30d | got resp=1 data=0x00000008
+[FAIL:wrong_data] cycle 1523 #831 P4 T0 FETCH d1=R2 d2=R1 r1=R2 data=0x80000000 | exp resp=1 data=0xb32b6000 | got resp=1 data=0xb5995b00
+[FAIL:wrong_resp] cycle 1546 #905 P2 T0 SUB d1=R13 d2=R9 r1=R6 data=0xffffffff | exp resp=1 data=0x00000000 | got resp=2 data=0x00000000
+[FAIL:wrong_data] cycle 1572 #889 P4 T3 FETCH d1=R5 d2=R5 r1=R2 data=0xffffffff | exp resp=1 data=0x1c32d426 | got resp=1 data=0x1c33972b
+[FAIL:wrong_data] cycle 1587 #903 P4 T1 FETCH d1=R0 d2=R5 r1=R1 data=0x00000000 | exp resp=1 data=0x1c32d426 | got resp=1 data=0x1c33972b
+[FAIL:wrong_data] cycle 1589 #941 P1 T2 FETCH d1=R5 d2=R5 r1=R7 data=0x00000000 | exp resp=1 data=0x1c32d426 | got resp=1 data=0x1c33972b
+[FAIL:wrong_data] cycle 1594 #908 P4 T1 FETCH d1=R6 d2=R3 r1=R5 data=0x5470e093 | exp resp=1 data=0x0000c30d | got resp=1 data=0x00000008
+[FAIL] ... further failures counted but not printed
+--------------------------------------------------------------
+ checked=3538 pass=3428 fail=110  coverage=100.0%
+ RESULT: FAIL
+@@SUMMARY {"design":"calc3","test":"regress","bug":3,"checked":3538,"pass":3428,"fail":110,"spurious":0,"coverage":100.00,"cov":{ "cmd_x_port":[32,32],"tag_x_port":[16,16],"registers_rd_wr":[32,32],"branch_taken_not":[4,4],"skipped_cmd_kind":[8,8],"outstanding_depth":[16,16],"out_of_order_x_port":[4,4],"hazard_cross_port":[1,1],"hazard_back_to_back":[1,1],"ovf_unf_x_port":[8,8],"invalid_cmd":[1,1]},"fail_kinds":{"wrong_data":83,"wrong_resp":27},"fail_cmds":{"ADD":11,"FETCH":84,"SHR":1,"SUB":14},"first_fail":"[FAIL:wrong_data] cycle 386 #156 P1 T0 FETCH d1=R9 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x0000aaaa | got resp=1 data=0x00000bad"}
+- tb/calc3/calc3_tb_top.sv:69: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05
+- Verilator: $finish at 168us; walltime 102.729 s; speed 1.639 us/s
+- Verilator: cpu 2.615 s on 1 threads; allocated 5 MB

@@ -1,0 +1,41 @@
+==============================================================
+ Calc3 verification  test=regress  BUG=1
+==============================================================
+[TEST] smoke: store/fetch all registers from all ports, basic ALU ops
+[TEST] directed: overflow, underflow, shifts, branches, skip side-effects, invalid
+[TEST] hazards: cross-port same-cycle RAW, back-to-back RAW, out-of-order tags
+[FAIL:unexpected_tag] cycle 919 #372 P3 T1 NOP d1=R0 d2=R0 r1=R0 data=0x00000000 | resp=1 for tag 1 that is not outstanding
+[FAIL:unexpected_tag] cycle 922 #373 P4 T0 NOP d1=R0 d2=R0 r1=R0 data=0x00000000 | resp=1 for tag 0 that is not outstanding
+[FAIL:no_response] cycle 958 #367 P3 T2 FETCH d1=R0 d2=R0 r1=R0 data=0x00000000 | no response after 40 cycles
+[FAIL:no_response] cycle 959 #370 P4 T3 ADD d1=R0 d2=R0 r1=R2 data=0x00000000 | no response after 40 cycles
+[FAIL:unexpected_tag] cycle 974 #384 P3 T0 NOP d1=R0 d2=R0 r1=R0 data=0x00000000 | resp=1 for tag 0 that is not outstanding
+[FAIL:unexpected_tag] cycle 977 #385 P4 T0 NOP d1=R0 d2=R0 r1=R0 data=0x00000000 | resp=1 for tag 0 that is not outstanding
+[FAIL:wrong_data] cycle 978 #383 P4 T2 FETCH d1=R2 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x00018602 | got resp=1 data=0x00000000
+[FAIL:no_response] cycle 1013 #379 P3 T1 FETCH d1=R1 d2=R0 r1=R0 data=0x00000000 | no response after 40 cycles
+[FAIL:no_response] cycle 1014 #382 P4 T3 ADD d1=R1 d2=R1 r1=R3 data=0x00000000 | no response after 40 cycles
+[FAIL:unexpected_tag] cycle 1029 #396 P3 T3 NOP d1=R0 d2=R0 r1=R0 data=0x00000000 | resp=1 for tag 3 that is not outstanding
+[FAIL:unexpected_tag] cycle 1032 #397 P4 T0 NOP d1=R0 d2=R0 r1=R0 data=0x00000000 | resp=1 for tag 0 that is not outstanding
+[FAIL:wrong_data] cycle 1033 #395 P4 T1 FETCH d1=R3 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x00030c08 | got resp=1 data=0x00000000
+[FAIL:no_response] cycle 1068 #391 P3 T0 FETCH d1=R2 d2=R0 r1=R0 data=0x00000000 | no response after 40 cycles
+[FAIL:no_response] cycle 1069 #394 P4 T3 ADD d1=R2 d2=R2 r1=R4 data=0x00000000 | no response after 40 cycles
+[FAIL:unexpected_tag] cycle 1084 #408 P3 T2 NOP d1=R0 d2=R0 r1=R0 data=0x00000000 | resp=1 for tag 2 that is not outstanding
+[FAIL:unexpected_tag] cycle 1087 #409 P4 T0 NOP d1=R0 d2=R0 r1=R0 data=0x00000000 | resp=1 for tag 0 that is not outstanding
+[FAIL:wrong_data] cycle 1088 #407 P4 T2 FETCH d1=R4 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x00061818 | got resp=1 data=0x00000000
+[FAIL:no_response] cycle 1123 #403 P3 T3 FETCH d1=R3 d2=R0 r1=R0 data=0x00000000 | no response after 40 cycles
+[FAIL:no_response] cycle 1124 #406 P4 T3 ADD d1=R3 d2=R3 r1=R5 data=0x00000000 | no response after 40 cycles
+[FAIL:unexpected_tag] cycle 1139 #420 P3 T1 NOP d1=R0 d2=R0 r1=R0 data=0x00000000 | resp=1 for tag 1 that is not outstanding
+[FAIL:unexpected_tag] cycle 1142 #421 P4 T0 NOP d1=R0 d2=R0 r1=R0 data=0x00000000 | resp=1 for tag 0 that is not outstanding
+[FAIL:wrong_data] cycle 1143 #419 P4 T1 FETCH d1=R5 d2=R0 r1=R0 data=0x00000000 | exp resp=1 data=0x000c3040 | got resp=1 data=0x00000000
+[FAIL:no_response] cycle 1178 #415 P3 T2 FETCH d1=R4 d2=R0 r1=R0 data=0x00000000 | no response after 40 cycles
+[FAIL:no_response] cycle 1179 #418 P4 T3 ADD d1=R4 d2=R4 r1=R6 data=0x00000000 | no response after 40 cycles
+[FAIL:unexpected_tag] cycle 1194 #432 P3 T0 NOP d1=R0 d2=R0 r1=R0 data=0x00000000 | resp=1 for tag 0 that is not outstanding
+[FAIL] ... further failures counted but not printed
+[TEST] random: 3000 constrained-random transactions
+--------------------------------------------------------------
+ checked=4216 pass=2765 fail=1451  coverage=100.0%
+ RESULT: FAIL
+@@SUMMARY {"design":"calc3","test":"regress","bug":1,"checked":4216,"pass":2765,"fail":1451,"spurious":0,"coverage":100.00,"cov":{ "cmd_x_port":[32,32],"tag_x_port":[16,16],"registers_rd_wr":[32,32],"branch_taken_not":[4,4],"skipped_cmd_kind":[8,8],"outstanding_depth":[16,16],"out_of_order_x_port":[4,4],"hazard_cross_port":[1,1],"hazard_back_to_back":[1,1],"ovf_unf_x_port":[8,8],"invalid_cmd":[1,1]},"fail_kinds":{"no_response":678,"unexpected_tag":678,"wrong_data":46,"wrong_resp":49},"fail_cmds":{"ADD":114,"BE":40,"BZ":36,"FETCH":179,"INV14":4,"INV15":2,"INV3":5,"INV4":5,"INV7":4,"INV8":4,"NOP":678,"SHL":57,"SHR":69,"STORE":148,"SUB":106},"first_fail":"[FAIL:unexpected_tag] cycle 919 #372 P3 T1 NOP d1=R0 d2=R0 r1=R0 data=0x00000000 | resp=1 for tag 1 that is not outstanding"}
+- tb/calc3/calc3_tb_top.sv:69: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05
+- Verilator: $finish at 254us; walltime 101.789 s; speed 2.498 us/s
+- Verilator: cpu 2.411 s on 1 threads; allocated 5 MB
