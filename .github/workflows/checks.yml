@@ -1,0 +1,57 @@
+name: checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  fast-checks:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install Icarus Verilog and Verilator (lint)
+        run: sudo apt-get update && sudo apt-get install -y iverilog verilator
+      - name: Lint the RTL
+        run: |
+          verilator --lint-only -Wall -Wno-ASCRANGE rtl/calc1/calc1_top.v
+          verilator --lint-only -Wall -Wno-ASCRANGE rtl/calc3/calc3_top.v
+      - name: Replay the 2024 Questa logs on the open RTL (4-state)
+        run: |
+          python3 sim/check_replay.py
+          python3 - <<'PY'
+          import json; d = json.load(open("results/replay_2024.json"))
+          bad = [k for k, v in d.items() if v["identical"] != v["compared"]]
+          assert not bad, bad
+          PY
+      - name: Website JavaScript models are cycle-identical to the RTL
+        run: python3 sim/check_js_models.py --cycles 3000 --seeds 2
+      - name: In-browser testbench (golden passes, every bug caught)
+        run: node sim/js_regress.js 2000 1
+
+  sv-regression:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cache Verilator
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: /opt/verilator
+          key: verilator-v5.052-ubuntu24
+      - name: Build Verilator 5.052 (constrained randomization needs >= 5.036)
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          sudo apt-get update && sudo apt-get install -y git autoconf flex bison help2man libfl-dev z3 ccache
+          git clone --depth 1 -b v5.052 https://github.com/verilator/verilator /tmp/vsrc
+          cd /tmp/vsrc && autoconf && ./configure --prefix=/opt/verilator && make -j4 && make install
+      - name: Install z3
+        run: sudo apt-get update && sudo apt-get install -y z3
+      - name: Build all 16 variants and run the regression
+        run: |
+          export PATH=/opt/verilator/bin:$PATH
+          sim/build.sh
+          python3 sim/regress.py --seeds 1 --jobs 4
